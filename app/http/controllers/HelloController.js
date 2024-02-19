@@ -6,6 +6,9 @@ class HelloController {
   dashboard(req, res, next) {
     res.render("admin/dashboard", { title: "Express" });
   }
+  admins(req, res, next) {
+    res.render("admin/admins", { title: "Express" });
+  }
   category(req, res, next) {
     res.render("admin/category", { title: "Express" });
   }

@@ -1,0 +1,112 @@
+body {
+    background-color: lightgrey;
+}
+
+.greetings_container{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    background-color: whitesmoke;
+    padding: 10px;
+    vertical-align: middle;
+    border-radius: 20px;
+}
+
+.greetings-text{
+    padding-left: 1rem;
+    text-align: center;
+    background-color: inherit;
+    color: black;
+}
+
+.pf-img_small{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.side-container{
+    background-color: lightgrey;
+}
+
+.side-links-container{
+    background-color: whitesmoke;
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 20px;
+}
+
+.side-links{
+    list-style: none;
+    list-style-type: none;
+}
+
+.side-links>a{
+    display: block;
+    text-decoration: none;
+    margin: 1rem;
+}
+
+.new-admin_container{
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.form-container>div{
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.form-container>div:last-child{
+    width: 50%;
+    display: flex;
+    margin-bottom: 2rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    float: right;
+}
+
+.fcreate{
+    background-color: wheat;
+    color: #2f2f2f;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.fcancel{
+    background-color: transparent;
+    color: #2f2f2f;
+    border-radius: 10px;
+    border: 1px solid #2f2f2f;
+}
+
+.form-container>div>button{
+    padding: 10px;
+    width: 45%;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.form-container>div>label{
+    font-size: 1.2rem;
+    margin-right: 10px;
+    width: 30%;
+}
+
+.form-container>div>input{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
