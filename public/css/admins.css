@@ -26,13 +26,8 @@ body {
     margin-right: 10px;
 }
 
-.side-container{
-    background-color: lightgrey;
-}
-
 .side-links-container{
     background-color: whitesmoke;
-    padding: 20px;
     font-size: 1.5rem;
     border-radius: 20px;
 }
@@ -40,14 +35,118 @@ body {
 .side-links{
     list-style: none;
     list-style-type: none;
+    display: flex;
+    align-content: center;
+    padding: 1rem;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.side-links:first-child{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.side-links:last-child{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.side-links:hover{
+    background-color: wheat;
+    
+}
+
+.side-links>img{
+    border: 1px solid black;
 }
 
 .side-links>a{
     display: block;
     text-decoration: none;
-    margin: 1rem;
+    margin: auto 1rem;
+    color: black;
+    font-size: 1.2rem;
 }
 
+/* Start of admin home style */
+
+.admin-home_container{
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.admin-home_container>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.pg-title{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: start;
+    margin: auto 0;
+}
+
+.action_container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.admin-redir{
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    background-color: #509c43;
+    color: whitesmoke;
+    border-radius: 10px;
+    padding: 10px 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 30%;
+}
+
+.edit{
+    font-size: 1rem;
+    background-color: #93773e;
+    color: whitesmoke;
+    justify-self: start;
+}
+
+.delete{
+    font-size: 1rem;
+    background-color: #c43e3e;
+    color: whitesmoke;
+}
+.arrow{
+    border-radius: 50%;
+    padding: 10px;
+    background-color: wheat;
+    color: #020202;
+}
+
+.prev, .next {
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    background-color: lightgrey;
+  }
+  
+  .prev {
+    margin-right: 10px;
+  }
+  
+  .next {
+    margin-left: 10px;
+  }
+
+
+/* Start of admin create style */
 .new-admin_container{
     background-color: whitesmoke;
     padding: 20px;
@@ -62,8 +161,6 @@ body {
     align-items: center;
     justify-content: space-between;
 }
-
-
 
 .form-container>div:last-child{
     width: 50%;
@@ -83,13 +180,16 @@ body {
 }
 
 .fcancel{
+    display: block;
+    text-decoration: none;
+    text-align: center;
     background-color: transparent;
     color: #2f2f2f;
     border-radius: 10px;
     border: 1px solid #2f2f2f;
 }
 
-.form-container>div>button{
+.fcancel, .fcreate{
     padding: 10px;
     width: 45%;
     border-radius: 10px;
