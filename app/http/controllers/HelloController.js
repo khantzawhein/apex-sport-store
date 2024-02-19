@@ -9,6 +9,13 @@ class HelloController {
   admins(req, res, next) {
     res.render("admin/admins", { title: "Express" });
   }
+  admincreate(req, res, next) {
+    res.render("admin/admincreate", { title: "Express" });
+  }
+  adminedit(req, res, next) {
+    res.render("admin/adminedit", { title: "Express" });
+  }
+
   category(req, res, next) {
     res.render("admin/category", { title: "Express" });
   }

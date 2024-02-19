@@ -69,40 +69,33 @@
         </div>
     
 
-        <div class="col-9 admin-home_container">
-            <div class="d-flex">
-              <h2 class="pg-title">Admins</h2>
-              <a href="/admin/create" class="admin-redir">&plus; New Admin</a>
-            </div>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col"><input type="checkbox" id="checkbox-all"></th>
-                  <th scope="col">ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="checkbox" id="admin1"></th>
-                  <td>1</th>
-                  <td>John Doe</td>
-                  <td>email-data</td>
-                  <td class="action_container">
-                    <a href="/admin/edit" class="admin-redir edit">Edit</a>
-                    <a href="/admin/delete" class="admin-redir delete">Delete</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table> 
+        <div class="col-9 new-admin_container">
             
-            <div class="d-flex justify-content-end">
-              <button class="prev"><span class="arrow">&#9664;</span> Prev</button>
-              <span class="page-num">1</span>
-              <button class="next">Next <span class="arrow">&#9654;</span></button>
-            </div> 
+            <h2 class="m-5 pg-title">Admin Edit</h2>
+            <form class="m-5 form-container">
+                <div>
+                    <label for="new-admin_name">Name</label>
+                    <input type="text" class="form-control" id="new-admin_name" name="new-admin_name" />
+                </div>
+                <div>
+                    <label for="new-admin_email">Email</label>
+                    <input type="text" class="form-control" id="new-admin_email" name="new-admin_email" />
+                </div>
+                <div>
+                    <label for="new-admin_password">Password</label>
+                    <input type="text" class="form-control" id="new-admin_password" name="new-admin_password" />
+                </div>
+                <div>
+                    <label for="new-admin_pconfirm">Confirm Password</label>
+                    <input type="text" class="form-control" id="new-admin_pconfirm" name="new-admin_pconfirm" />
+                </div>
+
+                <div>
+                    <button type="submit" class="fcreate">Create</button>
+                    <a href="/admins" class="fcancel">Cancel</a>
+                </div>
+            </form>
+             
         </div>
 
     </div>
