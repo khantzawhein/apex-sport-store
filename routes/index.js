@@ -10,6 +10,8 @@ router.get('/', HelloController.index);
 /* GET admin routes. */
 router.get('/admin/dashboard', HelloController.dashboard);
 
+router.get('/admin/admins', HelloController.admins);
+
 router.get('/admin/category', HelloController.category);
 
 module.exports = router;
