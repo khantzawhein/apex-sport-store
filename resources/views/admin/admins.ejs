@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admins</title>
     <link rel="stylesheet" href="/css/all.css" />
-    <link rel="stylesheet" href="/css/admins.css" />
+    
   </head>
   <body>
-    <!-- End of Nav-->
     <nav>
-      <div class="container mt-4">
+      <div class="d-none d-md-block container mt-4">
         <div class="row">
-
-          <div class="col-3">
+          <div class="col-md-3">
             <span class="navbar-brand mb-0 h1">Admins</span>
           </div>
 
-          <div class="col-9 greetings_container">
+          <div class="col-md-9 greetings_container d-none d-md-block">
             <div class="d-flex justify-content-between">
-              <p class="greetings-text">Hello, John</p>
+              <p class="greetings-text d-none d-md-block">Hello, John</p>
               <img
                 class="pf-img_small"
                 src="https://unsplash.it/500/500"
@@ -29,14 +27,36 @@
           </div>
         </div>
       </div>
+
+      <!-- Mobile Nav -->
+      <div class="container-fluid d-md-none d-flex mt-4 flex-column justify-content-between">
+        <div class="row justify-content-center">
+          <div class="col-4 mobile_nav">
+            <img
+                class="pf-img_small"
+                src="https://unsplash.it/500/500"
+                alt="user"
+              />
+          </div>
+
+          <div class="col-4 mobile_nav text-center">
+            <span class="navbar-brand mb-0 h1">PEAK</span>
+          </div>
+          <div class="col-4 mobile_nav text-end">
+            <a id="sidebar_toggler">
+              <img src="menu-burger.png" class="" alt="dashboard"/>
+            </a>
+          </div>
+        </div>
+      </div>
     </nav>
     <!-- End of Nav-->
 
     <!-- Start of Side Bar-->
-    <div class="container">
+    <div class="container" id="sidebar_container">
       <div class="row">
-        <div class="col-3">
-          <div class="d-flex flex-column side-links-container">
+        <div class="d-none col-12 d-md-block col-md-3" id="sidebar">
+          <div class="d-lg-flex flex-column side-links-container">
             <li class="side-links">
                 <img src="https://unsplash.it/50/50" class="pf-img_small" alt="dashboard" />
                 <a href="">Dashboard</a>
@@ -67,21 +87,24 @@
             </li>
           </div>
         </div>
-    
+        
 
-        <div class="col-9 admin-home_container">
-            <div class="d-flex">
+        <div class="col-12 col-md-9 mt-5">
+            <div class="d-flex justify-content-between">
               <h2 class="pg-title">Admins</h2>
-              <a href="/admin/create" class="admin-redir">&plus; New Admin</a>
+              <a href="/admin/create" class="admin-redir create">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#ffffff" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                <span class="d-none d-md-inline">New Admin</span>
+              </a>
             </div>
-            <table class="table table-striped">
+            <table class="table table-striped mt-4">
               <thead>
                 <tr>
-                  <th scope="col"><input type="checkbox" id="checkbox-all"></th>
-                  <th scope="col">ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Action</th>
+                  <th scope="col" class="th_content"><input type="checkbox" id="checkbox-all"></th>
+                  <th scope="col" class="th_content">ID</th>
+                  <th scope="col" class="th_content">Name</th>
+                  <th scope="col" class="th_content">Email</th>
+                  <th scope="col" class="th_content">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -98,13 +121,14 @@
               </tbody>
             </table> 
             
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end ">
               <button class="prev"><span class="arrow">&#9664;</span> Prev</button>
               <span class="page-num">1</span>
               <button class="next">Next <span class="arrow">&#9654;</span></button>
             </div> 
         </div>
-
     </div>
+
+    <script src="/js/all.js"></script>
   </body>
 </html>
