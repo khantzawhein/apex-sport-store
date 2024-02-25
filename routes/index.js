@@ -10,7 +10,7 @@ router.get('/', HelloController.index);
 /* GET admin routes. */
 router.get('/admin/dashboard', HelloController.dashboard);
 
-router.get('/admins', HelloController.admins);
+router.get('/admin', HelloController.admins);
 
 router.get('/admin/category', HelloController.category);
 
