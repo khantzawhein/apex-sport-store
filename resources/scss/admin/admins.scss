@@ -2,9 +2,16 @@ body {
     background-color: lightgrey;
 }
 
+@media screen and (max-width: 845px){
+    body {
+        background-color: white;
+    }
+    
+}
+
 .greetings_container{
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    margin-bottom: calc(20/16*1rem);
     background-color: whitesmoke;
     padding: 10px;
     vertical-align: middle;
@@ -38,6 +45,7 @@ body {
     display: flex;
     align-content: center;
     padding: 1rem;
+    
     transition: background-color 0.5s ease-in-out;
 }
 
@@ -65,9 +73,14 @@ body {
     text-decoration: none;
     margin: auto 1rem;
     color: black;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
+/* Start of mobile list style */
+mobile-nav{
+    margin: auto auto;
+    align-items: center;
+}
 /* Start of admin home style */
 
 .admin-home_container{
@@ -95,6 +108,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    width: 100%;
 }
 
 .admin-redir{
@@ -104,37 +118,70 @@ body {
     background-color: #509c43;
     color: whitesmoke;
     border-radius: 10px;
-    padding: 10px 5px;
+    padding: 5px 5px;
     font-size: 1rem;
     cursor: pointer;
     width: 30%;
 }
 
+.admin-redir>svg{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    margin: auto auto;
+}
+
+.th_content{
+    font-size: 1rem;
+    font-style: normal;
+}
+
 .edit{
+    border-radius: 0%;
     font-size: 1rem;
     background-color: #93773e;
     color: whitesmoke;
     justify-self: start;
+    width: 50%;
+    height: 100%;
 }
 
 .delete{
     font-size: 1rem;
     background-color: #c43e3e;
     color: whitesmoke;
+    width: 50%;
+    height: 100%;
+    border-radius: 0%;
 }
+
+@media screen and (max-width: 845px){
+    
+    
+    .edit, .delete{
+        font-size: 0.8rem;
+    }
+}
+
+.create{
+    width: 15%;
+}
+
 .arrow{
     border-radius: 50%;
     padding: 10px;
+    width: 50px;
+    height: 50px;
     background-color: wheat;
     color: #020202;
 }
 
 .prev, .next {
     font-size: 16px;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border: none;
     cursor: pointer;
-    background-color: lightgrey;
+    background-color: inherit;
   }
   
   .prev {
@@ -209,4 +256,9 @@ body {
     padding: 10px;
     border-radius: 10px;
     font-size: 1.2rem;
+}
+
+.page-num{
+    font-size: 1.5rem;
+    margin: auto 0;
 }
