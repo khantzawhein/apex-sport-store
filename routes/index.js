@@ -1,10 +1,11 @@
 var express = require('express');
 const HelloController = require('../app/http/controllers/HelloController');
+const StorefrontController = require('../app/http/controllers/StorefrontController');
 
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', HelloController.index);
+router.get('/', StorefrontController.index);
 
 
 /* GET admin routes. */
