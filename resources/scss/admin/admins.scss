@@ -5,6 +5,9 @@
 * {
     font-family: 'Karta', sans-serif;
     font-size: 16px;
+
+}
+body {
     background-color: #f7f7f7;
 }
 
@@ -36,7 +39,6 @@
 .sidebar ul{
     background-color: white;
     font-size: medium;
-    font-style: bold;
     border-radius: 10px;
     padding: 0;
 }
@@ -65,14 +67,12 @@
 
 
 
-.greeting{
-    width: 85%;
+.greeting {
     height: 10vh;
     border-radius: 10px;
     padding: 1rem;
     margin: 1rem;
-    padding-left: 1rem;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .greeting span{
@@ -80,12 +80,10 @@
     font-weight: 300; 
 }
 
-.greeting img{
+.profile-img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-right: 1rem;
-    transform: translate(-50%, 0);
-    float: inline-end;
 }
+
 

@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%- include('../layouts/head') %>
-    <title>Dashboard</title>
-  </head>
-  <body>
-    <div class="d-flex">
-      <%- include('../layouts/admin_sidebar') %>
+<%- include("../layouts/header.ejs") %>
 
-      <div class="greeting d-none d-md-block">
-        <span>Hello, John 👋</span>
-        <img alt="profile picture" class="profile-img" src="https://unsplash.it/500/500"/>
-      </div>
-    </div>
-
-      <main>
-        <div class="row">
-            <div class="col">
-              Hello World
-            </div>
-          </div>
+<main class="container">
+    <div class="row">
+        <div class="col">
+            Hello World
         </div>
-      </main>
-  </body>
-</html>
+    </div>
+</main>
+
+<%- include("../layouts/footer.ejs") %>
