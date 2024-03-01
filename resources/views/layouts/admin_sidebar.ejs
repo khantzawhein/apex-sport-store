@@ -1,89 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/all.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <title>Dashboard</title>
-  </head>
-  <body>
+<section id="sidebar">
     <aside class="sidebar d-none d-md-block">
-      <div class="sidebar-brand-container">
-        <i class="fa-solid fa-mountain"></i>
-        <span>APEX</span>
-      </div>
+        <div class="sidebar-brand-container">
+            <img src="/images/Apex-logos_black 2.png" alt="Logo">
+        </div>
 
-      <ul class="list-group">
-        <li class="list-group-item">
-          <i class="fa-solid fa-table-columns"></i>
-          <span>Dashboard</span>
-        </li>
-        <li class="list-group-item">
-          <i class="fa-solid fa-user-group"></i>
-          <span>Admins</span>
-        </li>
-        <li class="list-group-item">
-          <i class="fa-solid fa-clipboard"></i>
-          <span>Customers</span>
-        </li>
-        <li class="list-group-item">
-          <i class="fa-solid fa-shirt"></i>
-          <span>Products</span>
-        </li>
-        <li class="list-group-item">
-          <i class="fa-solid fa-list"></i>
-          <span>Categories</span>
-        </li>
-        <li class="list-group-item">
-          <i class="fa-solid fa-file-invoice-dollar"></i>
-          <span>Sales</span>
-        </li>
-        <li class="list-group-item">
-          <i class="fa-solid fa-message"></i>
-          <span>Inquiries</span>
-        </li>
-      </ul>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <i class="fa-solid fa-table-columns"></i>
+                <span>Dashboard</span>
+            </li>
+            <li class="list-group-item">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Admins</span>
+            </li>
+            <li class="list-group-item">
+                <i class="fa-solid fa-clipboard"></i>
+                <span>Customers</span>
+            </li>
+            <li class="list-group-item">
+                <i class="fa-solid fa-shirt"></i>
+                <span>Products</span>
+            </li>
+            <li class="list-group-item">
+                <i class="fa-solid fa-list"></i>
+                <span>Categories</span>
+            </li>
+            <li class="list-group-item">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <span>Sales</span>
+            </li>
+            <li class="list-group-item">
+                <i class="fa-solid fa-message"></i>
+                <span>Inquiries</span>
+            </li>
+        </ul>
     </aside>
 
-    <nav class="container text-center d-block d-md-none p-3">
-      <div class="row">
-        <div class="col">
-          <i class="fa-solid fa-user fs-1"></i>
-        </div>
-        <div class="col">
-          <i class="fa-solid fa-mountain fs-3"></i>
-          <span class="fs-3">APEX</span>
-        </div>
-        <div class="col humburger-container">
-          <a
-            class="navbar-brand"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseExample"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            <i class="fa-solid fa-bars fs-3"></i>
-          </a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container collapse" id="collapseExample">
-      <ul class="list-group">
-        <li class="list-group-item my-2">Dashboard</li>
-        <li class="list-group-item mb-2">Admins</li>
-        <li class="list-group-item mb-2">Customers</li>
-        <li class="list-group-item mb-2">Products</li>
-        <li class="list-group-item mb-2">Categories</li>
-        <li class="list-group-item mb-2">Sales</li>
-        <li class="list-group-item mb-2">Inquiries</li>
-      </ul>
-    </div>
-    <script src="/js/bootstrap.bundle.js"></script>
-  </body>
-</html>
+    <%- include("mobile-nav.ejs") %>
+</section>
