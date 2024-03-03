@@ -1,0 +1,25 @@
+<%- include("../layouts/header.ejs") %>
+
+<main class="">
+  <div class="row">
+    <div class="col h3 my-3">Categories</div>
+
+    <form method="POST">
+      <div class="form-group">
+        <label for="category">Create Category</label>
+
+        <input
+          type="text"
+          class="form-control my-2"
+          for="categoryName"
+          id="categoryName"
+          aria-describedby="categoryHelp"
+          placeholder="Enter category"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</main>
+
+<%- include("../layouts/footer.ejs") %>

@@ -2,13 +2,14 @@ var express = require('express');
 const HelloController = require('../app/http/controllers/HelloController');
 const authController = require('../app/http/controllers/authController');
 const StorefrontController = require('../app/http/controllers/StorefrontController');
+const dashboardController = require('../app/http/controllers/dashboardController');
+const categoryController = require('../app/http/controllers/categoryController');
 
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', StorefrontController.index);
 
-router.get('/testing', HelloController.testing);
 router.get('/logout', authController.logout);
 
 /* GET login page. */
@@ -20,14 +21,16 @@ router.post('/login', authController.login);
 router.post('/signup', authController.signup);
 
 /* GET admin routes. */
-router.get('/admin/dashboard', HelloController.dashboard);
-
+router.get('/admin/dashboard', dashboardController.dashboard);
 router.get('/admin', HelloController.admins);
 
-router.get('/admin/category', HelloController.category);
-
 router.get('/admin/create', HelloController.admincreate);
-
 router.get('/admin/edit', HelloController.adminedit);
+
+
+/* Category routes. */
+router.get('/admin/category', categoryController.category);
+router.post('/admin/category', categoryController.categorycreate);
+
 
 module.exports = router;

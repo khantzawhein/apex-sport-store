@@ -54,7 +54,8 @@ class authController {
         }
 
         req.session.user = user;
-        res.redirect('/testing');
+        req.session.save();
+        res.redirect('admin/dashboard');
     }
     
     async logout(req, res, next) {
