@@ -3,22 +3,143 @@
 <main class="">
   <div class="row">
     <div class="col h3 my-3">Categories</div>
+    <div class="container">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary my-3 float-end"
+        data-bs-toggle="modal"
+        data-bs-target="#createModal"
+      >
+        Create
+      </button>
 
-    <form method="POST">
-      <div class="form-group">
-        <label for="category">Create Category</label>
+      <!-- Create Modal -->
+      <div
+        class="modal fade"
+        id="createModal"
+        tabindex="-1"
+        aria-labelledby="createModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="createModalLabel">
+                Create Category
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form action="/admin/category" method="POST">
+                <div class="form-group">
+                  <label for="categoryName">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="categoryName"
+                    name="categoryName"
+                  />
+                </div>
 
-        <input
-          type="text"
-          class="form-control my-2"
-          for="categoryName"
-          id="categoryName"
-          aria-describedby="categoryHelp"
-          placeholder="Enter category"
-        />
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    Create Category
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+
+    <!-- Edit Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="editModalLabel">
+              Create Category
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="/admin/category/edit/:id" method="POST">
+              <div class="form-group">
+                <label for="categoryEditName">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="categoryEditName"
+                  name="categoryEditName"
+                />
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Edit Category
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% let i = 1; categories.forEach((category) => { %>
+          <tr>
+            <th scope="row"><%= i %></th>
+            <td><%= category.name %></td>
+            <td>
+              <a data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
+              <a href="/admin/category/delete/<%= category.id %>">Delete</a>
+            </td>
+          </tr>
+          <% i++; }) %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </main>
 

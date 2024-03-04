@@ -59,12 +59,13 @@ body {
     margin-left: 20px;
 }
 
+.sidebar ul li span a{
+    text-decoration: none;
+    color: black; 
+}
 .sidebar ul li span:hover{
     background-color: #fff7e5;
 }
-
-/* Dashboard Styling*/
-
 
 
 .greeting {
