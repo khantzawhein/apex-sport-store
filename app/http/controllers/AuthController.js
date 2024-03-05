@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 
 class AuthController {
     async signupView(req, res, next) {
+        if (req.session.user) return res.redirect('/admin');
         res.render('admin/auth/signup', {title: 'Sign Up'});
     }
 
@@ -34,11 +35,6 @@ class AuthController {
     }
 
     async login(req, res, next) {
-
-        if (req.session.user) {
-            return res.redirect('/admin/testing');
-        }
-
         //auth and add to mysql db using prisma
         const {username, password} = req.body;
         const user = await prisma.admin.findFirst({where: {username}});

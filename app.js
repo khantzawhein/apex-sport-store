@@ -8,7 +8,7 @@ const FileStore = require('session-file-store')(session);
 require('dotenv').config()
 const adminRouter = require('./routes/admin');
 const storeFrontRouter = require('./routes/storefront');
-const middleware = require('./app/http/controllers/middleware');
+const MiddlewareServiceProvider = require('./app/http/providers/MiddlewareServiceProvider');
 const app = express();
 
 const FileStoreConfig = {
@@ -23,16 +23,13 @@ app.use(session({
     saveUninitialized: true
 }))
 
-app.use(middleware.adminCheck)
+new MiddlewareServiceProvider(app).register();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'resources/views'));
 app.set('view engine', 'ejs');
 
-app.use((req, res, next) => {
-    res.locals.session = req.session;
-    next();
-});
+
 
 app.use(logger('dev'));
 app.use(express.json());
