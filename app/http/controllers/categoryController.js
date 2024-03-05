@@ -1,24 +1,17 @@
-const { PrismaClient, Prisma } = require('@prisma/client');
-
-const bodyParser = require('body-parser');
-bodyParser.urlencoded({ extended: true });
-
+const {PrismaClient, Prisma} = require('@prisma/client');
 const prisma = new PrismaClient();
 
-class categoryController{
-    constructor(){
-    }
-
-    async category(req, res, next) {
+class CategoryController {
+    async index(req, res) {
         let categories = await prisma.categories.findMany();
-        res.render("admin/category", { categories });
+        res.render("admin/category", {categories});
     }
 
-    async createCategory(req,res,next){
-        const { categoryName } = req.body;
+    async store(req, res, next) {
+        const {categoryName} = req.body;
         const slug = categoryName.toLowerCase().split(' ').join('-');
 
-         await prisma.categories.create({ 
+        await prisma.categories.create({
             data: {
                 name: categoryName,
                 slug: slug
@@ -29,7 +22,7 @@ class categoryController{
         res.redirect("/admin/category");
     }
 
-    async editCategory(req,res,next){
+    async update(req, res, next) {
         await prisma.categories.update({
             where: {
                 id: parseInt(req.params.id)
@@ -42,4 +35,4 @@ class categoryController{
     }
 }
 
-module.exports = new categoryController();
+module.exports = new CategoryController();

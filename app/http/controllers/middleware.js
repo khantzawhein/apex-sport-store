@@ -2,7 +2,7 @@ class middleware{
     constructor(){}
 
     async adminCheck(req, res, next) {
-        // console.log(req.originalUrl);
+        return next();
         if (req.originalUrl.includes('admin') && !req.session.user) {
             return res.redirect("/login");
         }

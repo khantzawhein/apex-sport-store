@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="./css/all.css" />
+    <link rel="stylesheet" href="/css/all.css" />
   </head>
   <body>
     <div
@@ -13,9 +13,19 @@
       <div class="row">
         <div class="col-6 col-md-12">
           <div>
-            <h1 class="text-center">Login to APEX</h1>
+            <h1 class="text-center">Sign Up to the APEX</h1>
           </div>
-          <form action="" method="post" class="p-5 bg-light">
+          <form action="/admin/signup" method="POST" class="p-5 bg-light">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Full Name"
+              />
+            </div>
             <div class="form-group my-3">
               <label for="username">Username</label>
               <input
@@ -37,8 +47,8 @@
               />
             </div>
             <div class="d-flex justify-content-around">
-              <button type="submit" class="btn btn-primary">Login</button>
-              <a href="signup" class="btn btn-secondary">Sign Up Here</a>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+              <a href="login" class="btn btn-secondary">Login Here</a>
             </div>
           </form>
         </div>

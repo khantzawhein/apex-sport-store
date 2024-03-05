@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admins</title>
+    <link rel="stylesheet" href="/css/all.css" />
+    <link rel="stylesheet" href="/css/admins.css" />
+  </head>
+  <body>
+    <!-- End of Nav-->
+    <nav>
+      <div class="container mt-4">
+        <div class="row">
+
+          <div class="col-3">
+            <span class="navbar-brand mb-0 h1">Admins</span>
+          </div>
+
+          <div class="col-9 greetings_container">
+            <div class="d-flex justify-content-between">
+              <p class="greetings-text">Hello, John</p>
+              <img
+                class="pf-img_small"
+                src="https://unsplash.it/500/500"
+                alt="user"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End of Nav-->
+
+    <!-- Start of Side Bar-->
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div class="d-flex flex-column side-links-container">
+            <li class="side-links">
+                <img src="https://unsplash.it/50/50" class="pf-img_small" alt="dashboard" />
+                <a href="">Dashboard</a>
+            </li>
+            <li class="side-links">
+                <img src="https://unsplash.it/50/50" class="pf-img_small" alt="dashboard" />
+                <a href="">Admins</a>
+            </li>
+            <li class="side-links">
+                <img src="https://unsplash.it/50/50" class="pf-img_small" alt="dashboard" />
+                <a href="">Customers</a>
+            </li>
+            <li class="side-links">
+                <img src="https://unsplash.it/50/50" class="pf-img_small" alt="dashboard" />
+                <a href="">Products</a>
+            </li>
+            <li class="side-links">
+                <img src="https://unsplash.it/50/50" class="pf-img_small" alt="dashboard" />
+                <a href="">Categories</a>
+            </li>
+            <li class="side-links">
+                <img src="https://unsplash.it/50/50" class="pf-img_small" alt="dashboard" />
+                <a href="">Sales</a>
+            </li>
+            <li class="side-links">
+                <img src="https://unsplash.it/50/50" class="pf-img_small" alt="dashboard" />
+                <a href="">Inquires</a>
+            </li>
+          </div>
+        </div>
+    
+
+        <div class="col-9 new-admin_container">
+            
+            <h2 class="m-5">Create New Admin</h2>
+            <form class="m-5 form-container">
+                <div>
+                    <label for="new-admin_name">Name</label>
+                    <input type="text" class="form-control" id="new-admin_name" name="new-admin_name" />
+                </div>
+                <div>
+                    <label for="new-admin_email">Email</label>
+                    <input type="text" class="form-control" id="new-admin_email" name="new-admin_email" />
+                </div>
+                <div>
+                    <label for="new-admin_password">Password</label>
+                    <input type="text" class="form-control" id="new-admin_password" name="new-admin_password" />
+                </div>
+                <div>
+                    <label for="new-admin_pconfirm">Confirm Password</label>
+                    <input type="text" class="form-control" id="new-admin_pconfirm" name="new-admin_pconfirm" />
+                </div>
+
+                <div>
+                    <button type="submit" class="fcreate">Create</button>
+                    <a href="/admins" class="fcancel">Cancel</a>
+                </div>
+            </form>
+             
+        </div>
+
+    </div>
+  </body>
+</html>

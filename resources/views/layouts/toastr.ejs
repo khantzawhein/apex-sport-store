@@ -1,0 +1,10 @@
+<script>
+    <% if (session.flash?.success) { %>
+    toastr.success('<%= session.flash?.success %>');
+    <% } %>
+    <% if (session.flash?.error) { %>
+    toastr.error('<%= session.flash?.error %>');
+    <% } %>
+    <% session.flash = null %>
+
+</script>

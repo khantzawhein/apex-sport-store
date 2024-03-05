@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body>
+<div
+        class="container vh-100 d-flex align-items-center justify-content-center"
+>
+    <div class="row">
+        <div class="col-6 col-md-12">
+            <div>
+                <h1 class="text-center">Login to the APEX</h1>
+            </div>
+            <form action="" method="post" class="p-5 bg-light">
+                <div class="form-group my-3">
+                    <label for="username">Username</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            name="username"
+                            placeholder="Username"
+                    />
+                </div>
+                <div class="form-group my-3">
+                    <label for="password">Password</label>
+                    <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                    />
+                </div>
+                <div class="d-flex justify-content-around">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <a href="signup" class="btn btn-secondary">Sign Up Here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<%- include("../../layouts/toastr") %>
+</body>
+</html>
