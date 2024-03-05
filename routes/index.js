@@ -1,21 +1,24 @@
 var express = require('express');
 const HelloController = require('../app/http/controllers/HelloController');
+const authController = require('../app/http/controllers/authController');
+const StorefrontController = require('../app/http/controllers/StorefrontController');
+const dashboardController = require('../app/http/controllers/dashboardController');
+
 
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', HelloController.index);
+router.get('/', StorefrontController.index);
 
+router.get('/logout', authController.logout);
 
-/* GET admin routes. */
-router.get('/admin/dashboard', HelloController.dashboard);
+/* GET login page. */
+router.get('/login', HelloController.login);
+router.get('/signup', HelloController.signup);
 
-router.get('/admin', HelloController.admins);
+/* POST login page. */
+router.post('/login', authController.login);
+router.post('/signup', authController.signup);
 
-router.get('/admin/category', HelloController.category);
-
-router.get('/admin/create', HelloController.admincreate);
-
-router.get('/admin/edit', HelloController.adminedit);
 
 module.exports = router;

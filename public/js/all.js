@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const sidebarToggler = document.getElementById('sidebar_toggler');
-    const sidebarContainer = document.getElementById('sidebar');
+    const sidebarToggler = document.getElementById('hamburger-menu');
+    const sidebarContainer = document.getElementById('list-group-container');
 
     sidebarToggler.addEventListener('click', function() {
       sidebarContainer.classList.toggle('d-none');
     });
 });
+
+

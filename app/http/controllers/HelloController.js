@@ -3,22 +3,13 @@ class HelloController {
   index(req, res, next) {
     res.render("index", { title: "Express" });
   }
-  dashboard(req, res, next) {
-    res.render("admin/dashboard", { title: "Express" });
+  login(req, res, next) {
+    res.render("admin/login", { title: "Login" });
   }
-  admins(req, res, next) {
-    res.render("admin/admins", { title: "Express" });
-  }
-  admincreate(req, res, next) {
-    res.render("admin/admincreate", { title: "Express" });
-  }
-  adminedit(req, res, next) {
-    res.render("admin/adminedit", { title: "Express" });
-  }
-
-  category(req, res, next) {
-    res.render("admin/category", { title: "Express" });
+  signup(req, res, next) {
+    res.render("admin/signup", { title: "Sign Up" });
   }
 }
 
 module.exports = new HelloController();
+ 

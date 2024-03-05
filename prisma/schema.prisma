@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
+  name     String
+}
+
+model Categories {
+  id       Int        @id @default(autoincrement())
+  name     String
+  slug     String
+  Products Products[]
+}
+
+model Products {
+  id                Int              @id @default(autoincrement())
+  name              String
+  slug              String
+  category          Categories       @relation(fields: [category_id], references: [id])
+  category_id       Int
+  price             Float
+  promotional_price Float
+  sales_count       Int
+  Product_Images    Product_Images[]
+  Sale_Items        Sale_Items[]
+}
+
+model Product_Images {
+  id         Int      @id @default(autoincrement())
+  product    Products @relation(fields: [product_id], references: [id])
+  product_id Int
+  image_path String
+  image_name String
+}
+
+model Sale_Items {
+  id          Int      @id @default(autoincrement())
+  product     Products @relation(fields: [product_id], references: [id])
+  product_id  Int
+  quantity    Int
+  unit_price  Float
+  total_price Float
+}
+
+model Sales {
+  id          Int        @id @default(autoincrement())
+  customer_id Int
+  total_items Int
+  total_price Float
+  Customers   Customers? @relation(fields: [customersId], references: [id])
+  customersId Int?
+}
+
+model Customers {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String
+  password String
+  Sales    Sales[]
+}
