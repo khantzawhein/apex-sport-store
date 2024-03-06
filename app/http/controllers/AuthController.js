@@ -1,5 +1,6 @@
 const {PrismaClient} = require('@prisma/client');
 const {hashSync, compareSync} = require('bcrypt');
+const SignUpRequest = require('../requests/SignUpRequest');
 
 const prisma = new PrismaClient();
 
@@ -14,23 +15,26 @@ class AuthController {
     }
 
     async signup(req, res, next) {
-        //auth and add to mysql db using prisma
-        const {name, username, password} = req.body;
+        const value = SignUpRequest.validate(req.body, next);
+
+        if (!value) return;
+
+        const {name, username, password} = value;
 
         //check if user exists
         if (!(await prisma.admin.findMany({where: {username}}))) {
-            req.session.error = 'User already exists';
-            return res.redirect('/admin/login')
+            req.session.flash = {error: 'Username already exists'};
+            return req.session.save(() => res.redirect('/admin/signup'));
         } else {
-            const user = await prisma.admin.create({
+            req.session.user = await prisma.admin.create({
                 data: {
                     name,
                     username,
                     password: hashSync(password, 10)
                 }
             });
-
-            res.redirect('/admin/login');
+            req.session.flash = {success: 'Account created successfully'};
+            req.session.save(() => res.redirect('/admin'));
         }
     }
 
@@ -43,9 +47,11 @@ class AuthController {
             req.session.flash = {error: 'Invalid Credentials, Please Try Again.'};
             return req.session.save(() => res.redirect('/admin/login'));
         }
+        req.session.regenerate((err) => {
+            req.session.user = user;
+            req.session.save(() => res.redirect('/admin'))
+        })
 
-        req.session.user = user;
-        req.session.save(() => res.redirect('/admin'))
     }
 
     async logout(req, res, next) {

@@ -1,0 +1,11 @@
+<% if (session.validation_error) { %>
+    <div class="alert alert-danger">
+        <strong>Validation Error - Please fix following error(s):</strong>
+        <ul>
+            <% session.validation_error.errors.forEach(function(error) { %>
+                <li><%= error.message %></li>
+            <% }); %>
+        </ul>
+    </div>
+    <% delete session.validation_error %>
+<% } %>

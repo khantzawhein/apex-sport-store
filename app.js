@@ -9,6 +9,7 @@ require('dotenv').config()
 const adminRouter = require('./routes/admin');
 const storeFrontRouter = require('./routes/storefront');
 const MiddlewareServiceProvider = require('./app/http/providers/MiddlewareServiceProvider');
+const ValidationError = require('./app/exceptions/ValidationError');
 const app = express();
 
 const FileStoreConfig = {
@@ -49,6 +50,9 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
+    if (err instanceof ValidationError) {
+        return err.render(req, res);
+    }
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
