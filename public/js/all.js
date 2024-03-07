@@ -6,5 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
       sidebarContainer.classList.toggle('d-none');
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+  const deleteCategory = document.getElementById('deleteCategory');
+  deleteCategory.addEventListener('click', deleteCategory);
+});
 
 

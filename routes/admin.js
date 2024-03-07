@@ -25,15 +25,23 @@ router.get('/dashboard', DashboardController.dashboard);
 /**
  * Admin CRUD
  */
-router.get('admins', AdminController.index);
-router.get('admins/create', AdminController.create);
-router.get('admins/edit', AdminController.edit);
-router.get('', (
-    req, res) => res.redirect('/admin/dashboard'));
+router.get('/admins', AdminController.index);
+router.get('/admins/create', AdminController.create);
+router.get('/admins/edit', AdminController.edit);
+router.get('', (req, res) => res.redirect('/admin/dashboard'));
 
+/**
+ * Category
+ */
+router.post('/category/create', CategoryController.store);
 
 router.get('/category', CategoryController.index);
+router.get('/category/edit/:id', CategoryController.edit);
+
 router.post('/category', CategoryController.store);
 router.post('/category/edit/:id', CategoryController.update);
+
+router.get('/category/delete/:id', CategoryController.delete);
+router.post('/category/delete/:id', CategoryController.delete);
 
 module.exports = router;
