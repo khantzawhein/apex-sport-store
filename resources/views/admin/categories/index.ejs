@@ -1,0 +1,95 @@
+<%- include("../../layouts/header.ejs") %>
+
+<main class="">
+  <div class="row">
+    <div class="col h3 my-3">Categories</div>
+    <div class="container">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary my-3 float-end"
+        data-bs-toggle="modal"
+        data-bs-target="#createModal"
+      >
+        Create
+      </button>
+
+      <!-- Create Modal -->
+      <div
+        class="modal fade"
+        id="createModal"
+        tabindex="-1"
+        aria-labelledby="createModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="createModalLabel">
+                Create Category
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/admin/category/create">
+                <div class="form-group">
+                  <label for="categoryName">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="categoryName"
+                    name="categoryName"
+                  />
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    Create Category
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% let i = 1; categories.forEach((category) => { %>
+          <tr>
+            <th scope="row"><%= i %></th>
+            <td><%= category.name %></td>
+            <td>
+              <a href="/admin/category/edit/<%- category.id %>"> Edit </a>
+              <a id="deleteCategory"> Delete </a>
+            </td>
+          </tr>
+          <% i++; }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<%- include("../../layouts/footer.ejs") %>

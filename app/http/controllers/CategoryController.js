@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 class CategoryController {
     async index(req, res) {
         let categories = await prisma.categories.findMany();
-        res.render("admin/category", {categories});
+        res.render('admin/categories/index', {categories});
     }
 
     async store(req, res, next) {
@@ -17,21 +17,44 @@ class CategoryController {
                 slug: slug
             }
         });
-        const category = await prisma.Categories.findMany();
-        console.log(category);
-        res.redirect("/admin/category");
+        res.redirect('/admin/category');
+    }
+
+    async edit(req, res, next) {
+        console.log(req.params.id);
+        await prisma.categories.findUnique({
+            where: {
+                id: parseInt(req.params.id)
+            }
+        }).then((category) => {
+            
+            res.render('admin/categories/edit', {category});
+        });
     }
 
     async update(req, res, next) {
+        // find conditional logic categorStoredName and  
+        let  { categoryEditName } = req.body;
+
         await prisma.categories.update({
             where: {
                 id: parseInt(req.params.id)
             },
             data: {
-                name: req.body.categoryName,
-                slug: req.body.categoryName.toLowerCase().split(' ').join('-')
+                name: categoryEditName,
+                slug: categoryEditName.toLowerCase().split(' ').join('-')
             }
         });
+        res.redirect('/admin/category');
+    }
+
+    async delete(req, res, next) {
+        await prisma.categories.delete({
+            where: {
+                id: parseInt(req.params.id)
+            }
+        });
+        res.redirect('/admin/category');
     }
 }
 

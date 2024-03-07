@@ -36,7 +36,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form action="/admin/category" method="POST">
+              <form>
                 <div class="form-group">
                   <label for="categoryName">Name</label>
                   <input
@@ -66,57 +66,6 @@
       </div>
     </div>
 
-    <!-- Edit Modal -->
-    <div
-      class="modal fade"
-      id="editModal"
-      tabindex="-1"
-      aria-labelledby="editModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="editModalLabel">
-              Create Category
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form action="/admin/category/edit/:id" method="POST">
-              <div class="form-group">
-                <label for="categoryEditName">Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="categoryEditName"
-                  name="categoryEditName"
-                />
-              </div>
-
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="submit" class="btn btn-primary">
-                  Edit Category
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div>
       <table class="table">
         <thead>
@@ -132,8 +81,10 @@
             <th scope="row"><%= i %></th>
             <td><%= category.name %></td>
             <td>
-              <a data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
-              <a href="/admin/category/delete/<%= category.id %>">Delete</a>
+              <form action="/category/edit/<%- category.id %>"></form>
+                <a href="/category/edit/<%- category.id %>">Edit </a>
+                <button id="deleteCategory">Delete </button>
+              </form>
             </td>
           </tr>
           <% i++; }) %>

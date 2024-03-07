@@ -1,0 +1,26 @@
+<%- include("../../layouts/header.ejs") %>
+<main>
+  <div class="row">
+    <div class="col h3 my-3">Edit Category</div>
+    <div class="container">
+      <form action="/admin/category/edit/<%- category.id %>" method="POST">
+        <div class="form-group">
+          <label for="categoryEditName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="categoryName"
+            name="categoryEditName"
+            value="<%- category.name %>"
+          />
+        </div>
+
+        <div class="modal-footer my-3">
+          <a href="/admin/category" class="btn btn-secondary">Close</a>
+          <button type="submit" class="btn btn-primary">Update Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<%- include("../../layouts/footer.ejs") %>
