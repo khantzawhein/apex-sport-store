@@ -54,7 +54,10 @@ class CategoryController {
                 id: parseInt(req.params.id)
             }
         });
-        res.redirect('/admin/category');
+        req.session.flash = {success: "Category Deleted Successfully"}
+        req.session.save(() => {
+            res.redirect('/admin/category')
+        });
     }
 }
 

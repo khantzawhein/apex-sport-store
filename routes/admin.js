@@ -42,6 +42,6 @@ router.post('/category', CategoryController.store);
 router.post('/category/edit/:id', CategoryController.update);
 
 router.get('/category/delete/:id', CategoryController.delete);
-router.delete('/category/delete/:id', CategoryController.delete);
+router.post('/category/delete/:id', CategoryController.delete);
 
 module.exports = router;
