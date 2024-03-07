@@ -4,7 +4,7 @@ const FormRequest = require('./FormRequest');
 class SignUpRequest extends FormRequest {
   rules() {
     return Joi.object({
-      name: Joi.string().alphanum().label('Name').min(3).max(30).required(),
+      name: Joi.string().label('Name').min(3).max(30).required(),
       username: Joi.string()
         .label('Username')
         .alphanum()

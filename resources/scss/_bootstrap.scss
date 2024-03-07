@@ -6,17 +6,20 @@
 // scss-docs-start import-stack
 // Configuration
 @import "../../node_modules/bootstrap/scss/functions";
+$apex: #FCB300;
+$component-active-bg: $apex;
+$focus-ring-color: rgba($apex, 0.3);
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
-
 $apex-colors: (
-        "apex": #FCB300
+        "apex": $apex,
 );
 $theme-colors: map-merge($theme-colors, $apex-colors);
 
 @import "../../node_modules/bootstrap/scss/maps";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/utilities";
+
 
 // Layout & components
 @import "../../node_modules/bootstrap/scss/root";

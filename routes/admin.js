@@ -5,6 +5,7 @@ const StorefrontController = require('../app/http/controllers/StorefrontControll
 const AdminController = require('../app/http/controllers/AdminController');
 const DashboardController = require('../app/http/controllers/DashboardController');
 const CategoryController = require('../app/http/controllers/CategoryController');
+const ProductController = require('../app/http/controllers/ProductController');
 
 var router = express.Router();
 
@@ -34,7 +35,6 @@ router.get('', (req, res) => res.redirect('/admin/dashboard'));
  * Category
  */
 router.post('/category/create', CategoryController.store);
-
 router.get('/category', CategoryController.index);
 router.get('/category/edit/:id', CategoryController.edit);
 
@@ -43,5 +43,15 @@ router.post('/category/edit/:id', CategoryController.update);
 
 router.get('/category/delete/:id', CategoryController.delete);
 router.post('/category/delete/:id', CategoryController.delete);
+
+/**
+ * Product
+ */
+router.get('/products', ProductController.index);
+router.get('/products/create', ProductController.create);
+router.get('/products/edit', ProductController.edit);
+router.post('/products', ProductController.store);
+router.post('/products/edit/:id', ProductController.update);
+router.post('/products/delete/:id', ProductController.delete);
 
 module.exports = router;

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <%- include('../layouts/head') %>
-    <title>Dashboard</title>
-  </head>
-  <body>
-    <div class="d-block d-md-flex">
-      <%- include('../layouts/admin_sidebar') %>
+    <title><%= `${title} - ` || '' ;%> Apex</title>
+</head>
+<body>
+<div class="d-block d-md-flex">
+    <%- include('../layouts/admin_sidebar') %>
 
-      <section id="right-container" class="flex-grow-1 container mx-5">
+    <section id="right-container" class="flex-grow-1 container mx-5">
         <div class="greeting my-3 px-3 d-none d-md-flex align-items-center justify-content-between">
-          <span>Hello, John 👋</span>
-          <img
-            alt="profile picture"
-            class="profile-img"
-            src="/images/image1.png"
-          />
+            <span>Hello, John 👋</span>
+            <img
+                    alt="profile picture"
+                    class="profile-img"
+                    src="/images/image1.png"
+            />
         </div>

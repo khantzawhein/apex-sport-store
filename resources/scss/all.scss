@@ -3,3 +3,8 @@
 @import "theme";
 
 @import "./admin/admins.scss";
+
+.required:after {
+  content: " *";
+  color: red;
+}
