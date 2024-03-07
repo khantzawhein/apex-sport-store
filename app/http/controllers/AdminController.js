@@ -1,15 +1,15 @@
 class AdminController {
-    index(req, res) {
-        res.render('admin/admins/index');
-    }
+  index(req, res) {
+    res.render('admin/admins/index');
+  }
 
-    create(req, res) {
-        res.render('admin/admins/create');
-    }
+  create(req, res) {
+    res.render('admin/admins/create');
+  }
 
-    edit(req, res) {
-        res.render('admin/admins/edit');
-    }
+  edit(req, res) {
+    res.render('admin/admins/edit');
+  }
 }
 
 module.exports = new AdminController();
