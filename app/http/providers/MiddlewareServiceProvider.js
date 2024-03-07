@@ -10,7 +10,7 @@ class MiddlewareServiceProvider {
   register() {
     this.app.use('/admin', Auth);
     this.app.use(InjectDefaultViewData);
-    this.app.use(FacilitateRedirectBack);
+    this.app.get(/^[^.]*$/, FacilitateRedirectBack);
   }
 }
 

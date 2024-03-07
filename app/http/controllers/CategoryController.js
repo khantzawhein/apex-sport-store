@@ -1,5 +1,6 @@
 const { PrismaClient, Prisma } = require('@prisma/client');
 const prisma = new PrismaClient();
+const CategoryRequest = require('../requests/CategoryRequest');
 
 class CategoryController {
   async index(req, res) {
@@ -8,7 +9,9 @@ class CategoryController {
   }
 
   async store(req, res, next) {
-    const { categoryName } = req.body;
+    const data = new CategoryRequest().validate(req.body, next);
+    if (!data) return;
+    const { categoryName } = data;
     const slug = categoryName.toLowerCase().split(' ').join('-');
 
     await prisma.categories.create({
@@ -17,35 +20,43 @@ class CategoryController {
         slug: slug
       }
     });
-    res.redirect('/admin/category');
-  }
-
-  async edit(req, res, next) {
-    console.log(req.params.id);
-    await prisma.categories.findUnique({
-      where: {
-        id: parseInt(req.params.id)
-      }
-    }).then((category) => {
-
-      res.render('admin/categories/edit', { category });
+    req.session.flash = { success: 'Category Created Successfully.' };
+    req.session.save(() => {
+      res.redirect('/admin/category');
     });
   }
 
+  async edit(req, res, next) {
+    const data = await prisma.categories.findUnique({
+      where: {
+        id: parseInt(req.params.id)
+      }
+    });
+    if (data) {
+      return res.render('admin/categories/edit', { category: data });
+    }
+    return res.redirect('/admin/category');
+  }
+
   async update(req, res, next) {
+    const data = new CategoryRequest().validate(req.body, next);
+    if (!data) return;
     // find conditional logic categorStoredName and
-    let { categoryEditName } = req.body;
+    let { categoryName } = req.body;
 
     await prisma.categories.update({
       where: {
         id: parseInt(req.params.id)
       },
       data: {
-        name: categoryEditName,
-        slug: categoryEditName.toLowerCase().split(' ').join('-')
+        name: categoryName,
+        slug: categoryName.toLowerCase().split(' ').join('-')
       }
     });
-    res.redirect('/admin/category');
+    req.session.flash = { success: 'Category Updated Successfully.' };
+    req.session.save(() => {
+      res.redirect('/admin/category');
+    });
   }
 
   async delete(req, res, next) {

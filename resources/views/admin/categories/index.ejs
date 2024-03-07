@@ -8,13 +8,15 @@
                 <h4>Category</h4>
                 <button
                         type="button"
-                        class="btn btn-apex-green text-white px-3 rounded-3"
+                        class="btn btn-apex-green text-white"
                         data-bs-toggle="modal"
                         data-bs-target="#createModal"
                 >
                     Create
                 </button>
             </div>
+
+            <%- include("../../components/validation-error")%>
 
             <!-- Create Modal -->
             <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel"
@@ -48,7 +50,7 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                     Close
                                 </button>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-apex-green text-white">
                                     Create Category
                                 </button>
                             </div>
@@ -61,35 +63,33 @@
 
     <div class="table-responsive">
         <table class="table table-striped rounded-3 overflow-hidden">
-            <thead class="table-apex-primary">
+            <thead class="table-apex-secondary ">
             <tr>
-                <th scope="col" class="col-1 text-center">ID</th>
-                <th scope="col" class="col-7">Category</th>
-                <th scope="col" class="col-4">Actions</th>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col">Category</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
             <% let i = 1; categories.forEach((category) => { %>
-                <tr class="">
-                    <th scope="row" class="col-1 text-center"><%= i ;%></th>
-                    <td class="col-7"><%= category.name ;%></td>
-                    <td class="col-4">
-                        <div class="d-flex">
-                            <a
-                                    href="/admin/category/edit/<%- category.id; %>"
-                                    class="btn me-3 mb-3 bg-info text-white d-block"
-                            >
-                                Edit
+                <tr>
+                    <th class=" text-center"><%= i; %></th>
+                    <td><%= category.name; %></td>
+                    <td><%= category.slug %></td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a href="/admin/category/edit/<%- category.id; %>"
+                               class="btn btn-outline-secondary">
+                                <i class="fas fa-edit"></i>
                             </a>
-                            <a
-                                    data-id="<%= category.id ;%>"
-                                    href="#"
-                                    class="deleteCategory btn mx-3 mb-3 bg-danger text-white d-block"
-                            >
-                                Delete
+                            <a data-id="<%= category.id; %>" href="#"
+                               class="deleteCategory btn btn-outline-danger">
+                                <i class="fas fa-trash"></i>
                             </a>
                         </div>
                     </td>
+
                 </tr>
             <% i++; }); %>
             </tbody>
@@ -101,6 +101,7 @@
   $(".deleteCategory").click(deleteCategory)
 
   function deleteCategory() {
+
     const categoryId = this.getAttribute("data-id")
     swal({
       title: "Are you sure?",
