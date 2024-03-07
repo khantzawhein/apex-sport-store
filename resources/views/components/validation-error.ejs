@@ -3,9 +3,9 @@
         <strong>Validation Error - Please fix following error(s):</strong>
         <ul>
             <% session.validation_error.errors.forEach(function(error) { %>
-                <li><%= error.message %></li>
+                <li><%= error.message ;%></li>
             <% }); %>
         </ul>
     </div>
-    <% delete session.validation_error %>
+    <% delete session.validation_error; %>
 <% } %>

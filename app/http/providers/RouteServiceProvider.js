@@ -1,10 +1,10 @@
 class RouteServiceProvider {
-    constructor(router) {
-        this.router = router;
-    }
+  constructor(router) {
+    this.router = router;
+  }
 
-    register() {
-        // Register routes
-        this.router.get('/', 'HomeController@index');
-    }
+  register() {
+    // Register routes
+    this.router.get('/', 'HomeController@index');
+  }
 }

@@ -1,5 +1,6 @@
 class productController {
-  constructor(){}
+  constructor() {
+  }
 }
 
 module.exports = new productController();
