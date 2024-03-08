@@ -6,7 +6,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="fw-bold mb-4">Create Product</h5>
-                    <form action="/admin/category/" method="POST">
+                    <%- include("../../components/validation-error") %>
+                    <form action="/admin/products/" method="POST" enctype="multipart/form-data">
                         <div class="row mb-3">
                             <label for="product_name" class="col-form-label col-md-4 required">Product Name:</label>
                             <div class="col-md-8">
@@ -26,12 +27,13 @@
                                 <div id="product_description" style="height: 200px"
                                 ></div>
                             </div>
+                            <input type="hidden" name="product_description" id="product_description_input">
                         </div>
 
                         <div class="row mb-3">
                             <label for="categories" class="col-form-label col-md-4">Categories:</label>
                             <div class="col-md-8">
-                                <select style="width: 100%" name="categories" id="categories" multiple>
+                                <select style="width: 100%" name="categories[]" id="categories" multiple>
                                     <% categories.forEach((category) => { %>
                                         <option value="<%= category.id; %>"><%= category.name; %></option>
                                     <% }) %>
@@ -42,16 +44,30 @@
                         <div class="row mb-3">
                             <label for="product_price" class="col-form-label col-md-4 required">Product Price:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="product_price" name="product_price"
-                                       placeholder="10.00" />
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="product_price" name="product_price"
+                                       placeholder="Enter normal price" />
+                                    <span class="input-group-text">THB</span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="discount_price" class="col-form-label col-md-4">Discount Price:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="discount_price" name="discount_price"
-                                       placeholder="10.00" />
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="discount_price" name="discount_price"
+                                       placeholder="Enter discount price" />
+                                    <span class="input-group-text">THB</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="product_images" class="col-form-label col-md-4">Product Images:</label>
+                            <div class="col-md-8">
+                                <input type="file" multiple id="product_images" name="product_images" />
                             </div>
                         </div>
 
@@ -79,6 +95,20 @@
       allowClear: true,
       theme: 'bootstrap-5'
     });
+
+    $("#product_images").filepond({
+      allowMultiple: true,
+      storeAsFile: true,
+      credits: false,
+      acceptedFileTypes: ['image/*'],
+    })
+
+    quill.on('text-change', function() {
+      const product_description = document.querySelector("#product_description_input");
+      product_description.value = quill.root.innerHTML;
+    });
+
+
   });
 </script>
 <%- include("../../layouts/footer.ejs") %>

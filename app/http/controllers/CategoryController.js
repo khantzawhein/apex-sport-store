@@ -9,7 +9,7 @@ class CategoryController {
   }
 
   async store(req, res, next) {
-    const data = new CategoryRequest().validate(req.body, next);
+    const data = await new CategoryRequest().validate(req.body, next);
     if (!data) return;
     const { categoryName } = data;
     const slug = categoryName.toLowerCase().split(' ').join('-');
@@ -42,7 +42,7 @@ class CategoryController {
   }
 
   async update(req, res, next) {
-    const data = new CategoryRequest().validate(req.body, next);
+    const data = await new CategoryRequest().validate(req.body, next);
     if (!data) return;
     // find conditional logic categorStoredName and
     let { categoryName } = req.body;

@@ -15,7 +15,7 @@ class AuthController {
   }
 
   async signup(req, res, next) {
-    const value = (new SignUpRequest()).validate(req.body, next);
+    const value = await new SignUpRequest().validate(req.body, next);
 
     if (!value) return;
 
@@ -51,7 +51,6 @@ class AuthController {
       req.session.user = user;
       req.session.save(() => res.redirect('/admin'));
     });
-
   }
 
   async logout(req, res, next) {

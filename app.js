@@ -11,6 +11,7 @@ const storeFrontRouter = require('./routes/storefront');
 const MiddlewareServiceProvider = require('./app/http/providers/MiddlewareServiceProvider');
 const ValidationError = require('./app/exceptions/ValidationError');
 const app = express();
+global.__basedir = __dirname;
 
 const FileStoreConfig = {
   path: path.join(__dirname, '/storage/sessions')

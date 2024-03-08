@@ -26,7 +26,7 @@ model Categories {
   id               Int                @id @default(autoincrement())
   name             String
   slug             String
-  Product_Category Product_Category[]
+  product_category Product_Category[]
   created_at       DateTime           @default(dbgenerated("now()")) @db.Timestamp()
   updated_at       DateTime           @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
@@ -48,10 +48,10 @@ model Products {
   price             Float
   promotional_price Float
   sales_count       Int
-  Categories        Product_Category[]
-  Product_Images    Product_Images[]
-  Sale_Items        Sale_Items[]
-  Product_Reviews   Product_Reviews[]
+  categories        Product_Category[]
+  product_images    Product_Images[]
+  sale_items        Sale_Items[]
+  product_reviews   Product_Reviews[]
   created_at        DateTime           @default(dbgenerated("now()")) @db.Timestamp()
   updated_at        DateTime           @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
@@ -94,7 +94,7 @@ model Sales {
   customer_id Int?
   total_items Int
   total_price Float
-  Customers   Customers? @relation(fields: [customer_id], references: [id], onDelete: SetNull)
+  customer   Customers? @relation(fields: [customer_id], references: [id], onDelete: SetNull)
   created_at  DateTime   @default(dbgenerated("now()")) @db.Timestamp()
   updated_at  DateTime   @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
@@ -104,8 +104,8 @@ model Customers {
   name            String
   email           String
   password        String
-  Sales           Sales[]
-  Product_Reviews Product_Reviews[]
+  sales           Sales[]
+  product_reviews Product_Reviews[]
   created_at      DateTime          @default(dbgenerated("now()")) @db.Timestamp()
   updated_at      DateTime          @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
