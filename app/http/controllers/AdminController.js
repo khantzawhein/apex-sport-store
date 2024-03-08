@@ -1,6 +1,8 @@
 class AdminController {
   index(req, res) {
-    res.render('admin/admins/index');
+    res.render('admin/admins/index', {
+      title: 'Admins'
+    });
   }
 
   create(req, res) {

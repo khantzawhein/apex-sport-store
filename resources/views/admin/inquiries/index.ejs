@@ -1,14 +1,11 @@
 <%- include("../../layouts/header.ejs") %>
-<form action="" method="post" id="delete-admin-form"></form>
+<form action="" method="post" id="delete-inquiry-form"></form>
 <main class="">
     <div class="row">
         <div class="container">
             <!-- Button trigger modal -->
             <div class="container d-md-flex justify-content-between my-3">
-                <h4>Admins</h4>
-                <a type="button" class="btn btn-apex-green text-white rounded-4" href="/admin/admins/create">
-                    Create
-                </a>
+                <h4>Inquiries</h4>
             </div>
 
             <%- include("../../components/validation-error") %>
@@ -20,9 +17,9 @@
             <thead class="table-apex-secondary ">
             <tr>
                 <th scope="col" class="text-center">ID</th>
-                <th scope="col">Username</th>
                 <th scope="col">Name</th>
-                <th scope="col">Created At</th>
+                <th scope="col">Email</th>
+                <th scope="col">Message</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -33,21 +30,21 @@
 </main>
 
 <script>
-  $(".deleteAdmin").click(deleteAdmin)
+  $(".deleteInquiry").click(deleteInquiry)
 
-  function deleteAdmin() {
+  function deleteInquiry() {
 
     const adminId = this.getAttribute("data-id")
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this admin!",
+      text: "Once deleted, you will not be able to recover this inquiry!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        $("#delete-admin-form")
-          .attr("action", `/admin/admins/delete/${adminId}`)
+        $("#delete-inquiry-form")
+          .attr("action", `/inquiry/inquiries/delete/${adminId}`)
           .submit()
       }
     })

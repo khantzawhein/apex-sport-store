@@ -19,7 +19,7 @@ class AuthController {
 
     if (!value) return;
 
-    const { name, username, password } = value;
+    const { name, username, password, email } = value;
 
     //check if user exists
     if (!(await prisma.admin.findMany({ where: { username } }))) {
@@ -30,6 +30,7 @@ class AuthController {
         data: {
           name,
           username,
+          email,
           password: hashSync(password, 10)
         }
       });

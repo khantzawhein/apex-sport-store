@@ -1,14 +1,11 @@
 <%- include("../../layouts/header.ejs") %>
-<form action="" method="post" id="delete-admin-form"></form>
-<main class="">
+<form action="" method="post" id="delete-sale-form"></form>
+<main>
     <div class="row">
         <div class="container">
             <!-- Button trigger modal -->
             <div class="container d-md-flex justify-content-between my-3">
-                <h4>Admins</h4>
-                <a type="button" class="btn btn-apex-green text-white rounded-4" href="/admin/admins/create">
-                    Create
-                </a>
+                <h4>Sales</h4>
             </div>
 
             <%- include("../../components/validation-error") %>
@@ -20,9 +17,10 @@
             <thead class="table-apex-secondary ">
             <tr>
                 <th scope="col" class="text-center">ID</th>
-                <th scope="col">Username</th>
-                <th scope="col">Name</th>
-                <th scope="col">Created At</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Total Items</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Ordered At</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -33,21 +31,21 @@
 </main>
 
 <script>
-  $(".deleteAdmin").click(deleteAdmin)
+  $(".deleteSale").click(deleteSale)
 
-  function deleteAdmin() {
+  function deleteSale() {
 
-    const adminId = this.getAttribute("data-id")
+    const saleId = this.getAttribute("data-id")
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this admin!",
+      text: "Once deleted, you will not be able to recover this sale!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        $("#delete-admin-form")
-          .attr("action", `/admin/admins/delete/${adminId}`)
+        $("#delete-sale-form")
+          .attr("action", `/sale/sales/delete/${saleId}`)
           .submit()
       }
     })
