@@ -1,0 +1,87 @@
+<%- include("../../layouts/header.ejs") %>
+<form action="" method="post" id="delete-product-form"></form>
+<main class="">
+    <div class="row">
+        <div class="container">
+            <!-- Button trigger modal -->
+            <div class="container d-md-flex justify-content-between my-3">
+                <h4>Products</h4>
+                <a type="button" class="btn btn-apex-green text-white" href="/admin/products/create">
+                    Create
+                </a>
+            </div>
+
+            <%- include("../../components/validation-error") %>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped rounded-3 overflow-hidden">
+            <thead class="table-apex-secondary ">
+            <tr>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Categories</th>
+                <th scope="col">No. of Sales</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% let i = 1; products.forEach((product) => { %>
+                <tr>
+                    <th class=" text-center"><%= i; %></th>
+                    <td><%= product.name; %></td>
+                    <td><%= product.price %></td>
+                    <td><%= product.categories.map(category => category.category.name).join(', ') %></td>
+                    <td><%= product.sales_count %></td>
+                    <td>
+                        <img src="/<%= product.product_images[0]?.image_path || "images/no-image.svg" %>"
+                             alt="Product Image of <%= product.name %>"
+                             style="max-height: 150px; object-fit: cover"
+                        >
+                    </td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a href="/admin/products/edit/<%- product.id; %>"
+                               class="btn btn-outline-secondary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a data-id="<%= product.id; %>" href="#"
+                               class="deleteProduct btn btn-outline-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+
+                </tr>
+            <% i++; }); %>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script>
+  $(".deleteProduct").click(deleteProduct)
+
+  function deleteProduct() {
+
+    const productId = this.getAttribute("data-id")
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this product!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        $("#delete-product-form")
+          .attr("action", `/admin/products/delete/${productId}`)
+          .submit()
+      }
+    })
+  }
+</script>
+
+<%- include("../../layouts/footer.ejs") %>

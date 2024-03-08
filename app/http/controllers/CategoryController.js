@@ -5,11 +5,11 @@ const CategoryRequest = require('../requests/CategoryRequest');
 class CategoryController {
   async index(req, res) {
     let categories = await prisma.categories.findMany();
-    res.render('admin/categories/index', { categories });
+    res.render('admin/categories/index', { title: 'Categories', categories });
   }
 
   async store(req, res, next) {
-    const data = new CategoryRequest().validate(req.body, next);
+    const data = await new CategoryRequest().validate(req.body, next);
     if (!data) return;
     const { categoryName } = data;
     const slug = categoryName.toLowerCase().split(' ').join('-');
@@ -33,13 +33,16 @@ class CategoryController {
       }
     });
     if (data) {
-      return res.render('admin/categories/edit', { category: data });
+      return res.render('admin/categories/edit', {
+        title: 'Edit Category',
+        category: data
+      });
     }
     return res.redirect('/admin/category');
   }
 
   async update(req, res, next) {
-    const data = new CategoryRequest().validate(req.body, next);
+    const data = await new CategoryRequest().validate(req.body, next);
     if (!data) return;
     // find conditional logic categorStoredName and
     let { categoryName } = req.body;

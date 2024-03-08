@@ -1,14 +1,15 @@
 const ValidationError = require('../../exceptions/ValidationError');
 
 class FormRequest {
-  rules() {
+  async rules() {
     return {};
   }
 
-  validate(data, next) {
-    const { error, value } = this.rules().validate(data, {
+  async validate(data, next) {
+    const { error, value } = (await this.rules()).validate(data, {
       abortEarly: false
     });
+    console.log(data);
     if (error) {
       const newError = new ValidationError(error.message, error.details);
       if (next) return next(newError);

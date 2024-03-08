@@ -1,6 +1,7 @@
 const Auth = require('../middlewares/Auth');
 const InjectDefaultViewData = require('../middlewares/InjectDefaultViewData');
 const FacilitateRedirectBack = require('../middlewares/FacilitateRedirectBack');
+const WipeTempUploadFolder = require('../middlewares/WipeTempUploadFolder');
 
 class MiddlewareServiceProvider {
   constructor(app) {
@@ -11,6 +12,7 @@ class MiddlewareServiceProvider {
     this.app.use('/admin', Auth);
     this.app.use(InjectDefaultViewData);
     this.app.get(/^[^.]*$/, FacilitateRedirectBack);
+    this.app.use(WipeTempUploadFolder);
   }
 }
 
