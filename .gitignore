@@ -1,7 +1,10 @@
 .DS_Store
 node_modules
 .idea
-public/css/all.css*
+public/css/admin-all.*css*
+public/css/auth.*css*
+public/css/storefront-all*css*
+
 .env
 .vscode
 storage/uploads/*
