@@ -1,5 +1,5 @@
 * {
-    font-family: "Karla", sans-serif;
+    font-family: "Karla", sans-serif;  
 }
 
 .nav-item > a {
@@ -10,9 +10,8 @@
     margin-left: 160px;
     padding: 10px;
 
-
+    
 }
-
 .navbar-nav > li {
     margin-right: 1.9rem;
 }
@@ -25,14 +24,15 @@
 
 .card-header-style {
     font-size: 1.3rem;
+    font-family: Karla, sans-serif !important;
 }
 
 @media screen and (max-width: 540px) {
     .shop-now-button {
-        font-size: 0.6rem !important;
+      font-size: 0.6rem !important;
     }
-}
-
+  }
+  
 .shop-now-button {
     background-color: #FCB300 !important;
     color: whitesmoke !important;
@@ -74,12 +74,41 @@
 #footer .accordion-button.collapsed, #footer .accordion-button:not(.collapsed) {
     background-color: #19204E !important;
     color: whitesmoke !important;
-}
-
-#footer .accordion-button.collapsed::after {
+  }
+  
+#footer  .accordion-button.collapsed::after {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
 
 #footer .accordion-button:not(.collapsed)::after {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
+}
+
+.navbar-nav {
+    .nav-item > a {
+        background-image: linear-gradient(to right, #f1600d, #fcb300 50%, #000 50%);
+        background-size: 200% 100%;
+        background-position: -100%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+      }
+    .nav-item > a::before {
+        content: "";
+        background: #fcb300;
+        display: block;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        transition: all 0.3s ease-in-out;
+      }
+      .nav-item > a:hover {
+        background-position: 0;
+      }
+      .nav-item > a:hover:before {
+        width: 100%;
+      }
 }
