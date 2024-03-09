@@ -1,13 +1,10 @@
 const { createHash } = require('crypto');
+const ejsHelpers = require('../../helpers/ejs-helpers');
 
 async function handle(req, res, next) {
+  res.locals = { ...res.locals, ...ejsHelpers };
   res.locals.session = req.session;
   res.locals.basePath = req.baseUrl + req.path;
-  if (req.session.user) {
-    const email = req.session.user?.email || '';
-    res.locals.gravatar =
-      'https://gravatar.com/avatar/' + createHash('sha256').update(email.trim().toLowerCase()).digest('hex');
-  }
   next();
 }
 

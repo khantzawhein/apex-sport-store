@@ -1,5 +1,6 @@
 </section>
 </div>
+</div>
 <script src="/js/sweetalert.js"></script>
 <script src="/js/all.js"></script>
 
@@ -37,6 +38,12 @@
 
 </script>
 
+<script>
+  $(".created-at,.updated-at").each(function(index, element) {
+    const date = new Date(element.textContent)
+    element.textContent = date.toLocaleString()
+  })
+</script>
 
 <%- include("toastr") %>
 </body>

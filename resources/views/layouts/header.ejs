@@ -5,15 +5,18 @@
     <title><%= `${title} - ` || ''; %> Apex</title>
 </head>
 <body>
-<div class="d-block d-md-flex">
-    <%- include('../layouts/admin_sidebar') %>
+<div class="row">
+    <div class="col-lg-3 col-md-4">
 
-    <section id="right-container" class="flex-grow-1 container mx-5">
-        <div class="greeting my-3 py-3 px-4 d-none d-md-flex align-items-center justify-content-between">
-            <span class="fs-5">Hello, <%= session.user.name%> 👋</span>
-            <img
-                    alt="profile picture"
-                    class="profile-img"
-                    src="<%= gravatar %>"
-            />
-        </div>
+        <%- include('../layouts/admin_sidebar') %>
+    </div>
+    <div class="col-lg-9 col-md-8">
+        <section id="right-container" class="mx-md-5">
+            <div class="greeting my-3 py-3 px-4 d-none d-md-flex align-items-center justify-content-between">
+                <span class="fs-5">Hello, <%= session.user.name %> 👋</span>
+                <img
+                        alt="profile picture"
+                        class="profile-img"
+                        src="<%= gravatar(session.user.email) %>"
+                />
+            </div>

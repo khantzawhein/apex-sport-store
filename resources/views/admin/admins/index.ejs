@@ -2,11 +2,11 @@
 <form action="" method="post" id="delete-admin-form"></form>
 <main class="">
     <div class="row">
-        <div class="container">
+        <div class="container-md">
             <!-- Button trigger modal -->
-            <div class="container d-md-flex justify-content-between my-3">
+            <div class="d-flex justify-content-between my-3 align-items-center">
                 <h4>Admins</h4>
-                <a type="button" class="btn btn-apex-green text-white rounded-4" href="/admin/admins/create">
+                <a type="button" class="btn btn-apex-green text-white rounded-4" href="/admin/signup">
                     Create
                 </a>
             </div>
@@ -22,11 +22,31 @@
                 <th scope="col" class="text-center">ID</th>
                 <th scope="col">Username</th>
                 <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Picture</th>
                 <th scope="col">Created At</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
+            <% admins.forEach(admin => { %>
+                <tr>
+                    <th scope="row" class="text-center"><%= admin.id ;%></th>
+                    <td><%= admin.username ;%></td>
+                    <td><%= admin.name ;%></td>
+                    <td><%= admin.email ;%></td>
+                    <td><img src="<%= gravatar(admin.email) ;%>" alt="Admin Picture" class="rounded-circle" width="50"
+                             height="50"></td>
+                    <td class="created-at"><%= admin.created_at ;%></td>
+                    <td>
+                        <% if(session.user.id !== admin.id) { %>
+                        <button class="btn btn-outline-danger deleteAdmin" data-id="<%= admin.id ;%>">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <%}%>
+                    </td>
+                </tr>
+            <% }); %>
             </tbody>
         </table>
     </div>
@@ -47,7 +67,7 @@
     }).then((willDelete) => {
       if (willDelete) {
         $("#delete-admin-form")
-          .attr("action", `/admin/admins/delete/${adminId}`)
+          .attr("action", `/admin/admins/${adminId}/delete`)
           .submit()
       }
     })

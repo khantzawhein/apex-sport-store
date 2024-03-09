@@ -42,19 +42,21 @@ model Product_Category {
 }
 
 model Products {
-  id                Int                @id @default(autoincrement())
-  name              String
-  slug              String
-  description       String?            @db.Text
-  price             Float
-  promotional_price Float
-  sales_count       Int
-  categories        Product_Category[]
-  product_images    Product_Images[]
-  sale_items        Sale_Items[]
-  product_reviews   Product_Reviews[]
-  created_at        DateTime           @default(dbgenerated("now()")) @db.Timestamp()
-  updated_at        DateTime           @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
+  id                  Int                @id @default(autoincrement())
+  name                String
+  slug                String
+  description         String?            @db.Text
+  price               Float
+  promotional_price   Float
+  sales_count         Int
+  is_featured_product Boolean            @default(false)
+  is_new_product      Boolean            @default(false)
+  categories          Product_Category[]
+  product_images      Product_Images[]
+  sale_items          Sale_Items[]
+  product_reviews     Product_Reviews[]
+  created_at          DateTime           @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at          DateTime           @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
 
 model Product_Reviews {
@@ -95,7 +97,7 @@ model Sales {
   customer_id Int?
   total_items Int
   total_price Float
-  customer   Customers? @relation(fields: [customer_id], references: [id], onDelete: SetNull)
+  customer    Customers? @relation(fields: [customer_id], references: [id], onDelete: SetNull)
   created_at  DateTime   @default(dbgenerated("now()")) @db.Timestamp()
   updated_at  DateTime   @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
@@ -105,8 +107,20 @@ model Customers {
   name            String
   email           String
   password        String
+  phone           String?
+  address         String?
   sales           Sales[]
   product_reviews Product_Reviews[]
   created_at      DateTime          @default(dbgenerated("now()")) @db.Timestamp()
   updated_at      DateTime          @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
+}
+
+model Inquiries {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String
+  phone      String
+  message    String
+  created_at DateTime @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at DateTime @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }

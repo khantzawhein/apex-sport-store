@@ -44,6 +44,8 @@ class ProductController {
           price: parseFloat(req.body.product_price) || 0,
           promotional_price: parseFloat(req.body.discount_price) || 0,
           description: req.body.product_description,
+          is_featured_product: !!req.body.is_featured_product,
+          is_new_product: !!req.body.is_new_product,
           categories: {
             create: categories
           },
@@ -141,6 +143,8 @@ class ProductController {
           price: parseFloat(req.body.product_price) || 0,
           promotional_price: parseFloat(req.body.discount_price) || 0,
           description: req.body.product_description,
+          is_featured_product: !!req.body.is_featured_product,
+          is_new_product: !!req.body.is_new_product,
           categories: {
             create: categories
           },

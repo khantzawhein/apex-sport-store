@@ -1,5 +1,5 @@
 async function handle(req, res, next) {
-  if (req.path === '/login' || req.path === '/signup') {
+  if (req.path === '/login') {
     if (req.session.user) {
       return res.redirect('/admin');
     }

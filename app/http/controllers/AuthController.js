@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 
 class AuthController {
   async signupView(req, res, next) {
-    if (req.session.user) return res.redirect('/admin');
     res.render('admin/auth/signup', { title: 'Sign Up' });
   }
 
@@ -22,11 +21,11 @@ class AuthController {
     const { name, username, password, email } = value;
 
     //check if user exists
-    if (!(await prisma.admin.findMany({ where: { username } }))) {
+    if ((await prisma.admin.findMany({ where: { username } })).length > 0) {
       req.session.flash = { error: 'Username already exists' };
       return req.session.save(() => res.redirect('/admin/signup'));
     } else {
-      req.session.user = await prisma.admin.create({
+      await prisma.admin.create({
         data: {
           name,
           username,
@@ -35,7 +34,7 @@ class AuthController {
         }
       });
       req.session.flash = { success: 'Account created successfully' };
-      req.session.save(() => res.redirect('/admin'));
+      req.session.save(() => res.redirect('/admin/admins'));
     }
   }
 

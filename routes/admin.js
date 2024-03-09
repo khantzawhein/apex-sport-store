@@ -32,8 +32,7 @@ router.get('/dashboard', DashboardController.dashboard);
  * Admin CRUD
  */
 router.get('/admins', AdminController.index);
-router.get('/admins/create', AdminController.create);
-router.get('/admins/edit', AdminController.edit);
+router.post('/admins/:id/delete', AdminController.delete);
 
 /**
  * Customer CRUD
@@ -72,5 +71,6 @@ router.get('/sales', SaleController.index);
  * Inquiries
  */
 router.get('/inquiries', InquiryController.index);
+router.post('/inquiries/:id/delete', InquiryController.delete);
 
 module.exports = router;

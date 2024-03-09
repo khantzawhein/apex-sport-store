@@ -2,9 +2,9 @@
 <form action="" method="post" id="delete-inquiry-form"></form>
 <main class="">
     <div class="row">
-        <div class="container">
+        <div class="container-md">
             <!-- Button trigger modal -->
-            <div class="container d-md-flex justify-content-between my-3">
+            <div class="d-flex justify-content-between my-3 align-items-center">
                 <h4>Inquiries</h4>
             </div>
 
@@ -19,11 +19,48 @@
                 <th scope="col" class="text-center">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Message</th>
+                <th scope="col">Sent At</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
+            <% inquiries.forEach((inquiry, index) => { %>
+                <tr>
+                    <th scope="row" class="text-center"><%= index + 1; %></th>
+                    <td><%= inquiry.name; %></td>
+                    <td><%= inquiry.email; %></td>
+                    <td><%= inquiry.phone; %></td>
+                    <td><%= shortenString(inquiry.message, 50); %></td>
+                    <td class="created-at"><%= new Date(inquiry.created_at).toISOString(); %></td>
+                    <td>
+                        <div class="modal fade" tabindex="-1" id="modal-message-<%= inquiry.id %>">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Message</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><%= inquiry.message %></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#modal-message-<%= inquiry.id %>"><i class="fa-regular fa-eye"></i>
+                        </button>
+                        <button class="btn btn-outline-danger deleteInquiry" data-id="<%= inquiry.id; %>"><i
+                                    class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            <% }); %>
             </tbody>
         </table>
     </div>
@@ -31,10 +68,9 @@
 
 <script>
   $(".deleteInquiry").click(deleteInquiry)
-
   function deleteInquiry() {
 
-    const adminId = this.getAttribute("data-id")
+    const inquiryId = this.getAttribute("data-id")
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this inquiry!",
@@ -44,7 +80,7 @@
     }).then((willDelete) => {
       if (willDelete) {
         $("#delete-inquiry-form")
-          .attr("action", `/inquiry/inquiries/delete/${adminId}`)
+          .attr("action", `/admin/inquiries/${inquiryId}/delete`)
           .submit()
       }
     })

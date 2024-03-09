@@ -17,6 +17,8 @@ class ProductRequest extends FormRequest {
       product_price: Joi.number().label('Product Price').min(0).required(),
       discount_price: Joi.number().label('Discount Price').min(0),
       product_description: Joi.string().label('Product Description').max(10000),
+      is_featured_product: Joi.boolean().label('Is Featured Product').optional(),
+      is_new_product: Joi.boolean().label('Is New Product').optional(),
       categories: Joi.array()
         .items(Joi.number().valid(...categories))
         .label('Categories')
