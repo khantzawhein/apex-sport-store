@@ -1,7 +1,12 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 class CustomerController {
-  index(req, res) {
+  async index(req, res) {
+    const customers = await prisma.customers.findMany();
     res.render('admin/customers/index', {
-      title: 'Customers'
+      title: 'Customers',
+      customers
     });
   }
 

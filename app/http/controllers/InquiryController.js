@@ -1,8 +1,25 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 class InquiryController {
-  index(req, res) {
+  async index(req, res) {
+    const inquiries = await prisma.inquiries.findMany();
+    console.log(inquiries);
     res.render('admin/inquiries/index', {
-      title: 'Sales'
+      title: 'Inquiries',
+      inquiries
     });
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+    await prisma.inquiries.delete({
+      where: {
+        id: parseInt(id)
+      }
+    });
+    req.session.flash = { success: 'Inquiry deleted successfully!' };
+    req.session.save(() => res.redirect('/admin/inquiries'));
   }
 }
 

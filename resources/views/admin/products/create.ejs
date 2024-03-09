@@ -1,7 +1,7 @@
 <%- include("../../layouts/header.ejs") %>
 <main>
     <div class="row">
-        <div class="container">
+        <div class="container-md">
             <%- include("../../components/validation-error.ejs") %>
             <div class="card">
                 <div class="card-body">
@@ -68,6 +68,22 @@
                             <label for="product_images" class="col-form-label col-md-4">Product Images:</label>
                             <div class="col-md-8">
                                 <input type="file" multiple id="product_images" name="product_images" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="form-check form-switch col-8 offset-4">
+                                <label class="form-check-label" for="is_featured_product">Mark as featured product</label>
+                                <input class="form-check-input" type="checkbox" role="switch" name="is_featured_product" value="true"
+                                       id="is_featured_product">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="form-check form-switch col-8 offset-4">
+                                <label class="form-check-label" for="is_new_product">Mark as new product</label>
+                                <input class="form-check-input" type="checkbox" role="switch" name="is_new_product" value="true"
+                                       id="is_new_product">
                             </div>
                         </div>
 

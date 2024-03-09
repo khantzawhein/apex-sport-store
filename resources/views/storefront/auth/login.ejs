@@ -21,33 +21,20 @@
         </div>
 
         <div class="form-container mt-4">
-            <h1 class="fw-bold fs-3">Create New Admin Account</h1>
-            <p class="text-body-tertiary">Create a brand new admin account to manage our store</p>
-            <form action="/admin/signup" method="post" class="mt-5">
-                <%- include("../../components/validation-error") %>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Full Name">
-                    <i class="fas fa-address-book"></i>
-                </div>
+            <h1 class="fw-bold fs-3">Login to Your Admin Account</h1>
+            <p class="text-body-tertiary">Enter your username and password to proceed</p>
+            <form action="/admin/login" method="post" class="mt-5">
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" placeholder="Username">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Email">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Password">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
                     <i class="fas fa-lock"></i>
                 </div>
 
                 <div class="d-grid" style="margin-top: 40px">
-                    <button type="submit" class="btn btn-apex rounded-0 py-3">Create</button>
+                    <button type="submit" class="btn btn-apex rounded-0 py-3">Login</button>
                 </div>
             </form>
 
@@ -57,13 +44,13 @@
             </div>
 
             <div class="d-grid">
-                <a href="/admin/admins" class="btn btn-outline-apex rounded-0 py-3">Back</a>
+                <a href="/admin/signup" class="btn btn-outline-apex rounded-0 py-3">Sign Up</a>
             </div>
         </div>
     </div>
     <div class="right col-lg-6 d-none d-lg-block">
         <div class="login-graphic-container d-flex justify-content-center align-items-center h-100">
-            <img src="/images/signup-graphic.svg" alt="Login" style="max-width: 70%; height: auto">
+            <img src="/images/login-graphic.svg" alt="Login" style="max-width: 70%; height: auto">
         </div>
     </div>
 </div>

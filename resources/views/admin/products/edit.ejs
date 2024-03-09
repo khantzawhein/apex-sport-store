@@ -2,7 +2,7 @@
 <main>
     <form action="" method="POST" id="delete-image-form"></form>
     <div class="row">
-        <div class="container">
+        <div class="container-md">
             <%- include("../../components/validation-error.ejs") %>
             <div class="card">
                 <div class="card-body">
@@ -91,6 +91,21 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <div class="form-check form-switch col-8 offset-4">
+                                <label class="form-check-label" for="is_featured_product">Mark as featured product</label>
+                                <input class="form-check-input" type="checkbox" role="switch" name="is_featured_product" value="true"
+                                       id="is_featured_product" <%= product.is_featured_product ? 'checked' : ''%>>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="form-check form-switch col-8 offset-4">
+                                <label class="form-check-label" for="is_new_product">Mark as new product</label>
+                                <input class="form-check-input" type="checkbox" role="switch" name="is_new_product" value="true"
+                                       id="is_new_product" <%= product.is_new_product ? 'checked' : ''%>>
+                            </div>
+                        </div>
 
                         <div class="modal-footer my-3">
                             <a href="/admin/products" class="btn btn-outline-secondary">Back</a>
@@ -123,11 +138,11 @@
       acceptedFileTypes: ['image/*'],
     })
 
-    $(".delete-image-btn").click(function () {
-        const imageId = $(this).data('id');
-        const form = document.querySelector("#delete-image-form");
-        form.action = `/admin/products/images/${imageId}/delete`;
-        form.submit();
+    $(".delete-image-btn").click(function() {
+      const imageId = $(this).data('id');
+      const form = document.querySelector("#delete-image-form");
+      form.action = `/admin/products/images/${imageId}/delete`;
+      form.submit();
     })
 
     quill.on('text-change', function() {

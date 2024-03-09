@@ -10,13 +10,13 @@
 body {
     background-color: #f7f7f7;
 }
-
+#sidebar {
+}
 .sidebar{
     //write width 15vw default and min width to prevent the sidebar from being too small
-    width: 15vw;
-    min-width: 250px;
+    width: 100%;
+    max-width: 300px;
     height: 100vh;
-    float: left;
     margin-right: 1rem;
     margin-left:2rem;
 }
