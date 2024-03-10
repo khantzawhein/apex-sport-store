@@ -37,12 +37,11 @@ class ProductController {
 
     let images = req.files ? this.saveImages(req.files) : [];
     await prisma.$transaction(async (prisma) => {
-      await prisma.products.create({
+      const product = await prisma.products.create({
         data: {
           name: req.body.product_name,
-          slug: req.body.product_name.replace(/\s/g, '-').toLowerCase(),
           price: parseFloat(req.body.product_price) || 0,
-          promotional_price: parseFloat(req.body.discount_price) || 0,
+          promotional_price: parseFloat(req.body.discount_price) || null,
           description: req.body.product_description,
           is_featured_product: !!req.body.is_featured_product,
           is_new_product: !!req.body.is_new_product,
@@ -50,11 +49,20 @@ class ProductController {
             create: categories
           },
           sales_count: 0,
+          slug: '',
           product_images: {
             createMany: {
               data: images
             }
           }
+        }
+      });
+      await prisma.products.update({
+        where: {
+          id: product.id
+        },
+        data: {
+          slug: req.body.product_name.replace(/\s/g, '-').toLowerCase() + '-' + product.id
         }
       });
     });
@@ -139,7 +147,7 @@ class ProductController {
         },
         data: {
           name: req.body.product_name,
-          slug: req.body.product_name.replace(/\s/g, '-').toLowerCase(),
+          slug: req.body.product_name.replace(/\s/g, '-').toLowerCase() + '-' + id,
           price: parseFloat(req.body.product_price) || 0,
           promotional_price: parseFloat(req.body.discount_price) || 0,
           description: req.body.product_description,

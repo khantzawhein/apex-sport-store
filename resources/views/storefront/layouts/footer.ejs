@@ -4,116 +4,21 @@
     <div class="footer_bg py-4 d-none d-sm-block">
         <div class="container">
             <div class="row justify-content-center">
-                <div style="color: whitesmoke" class="col-md-2">
-                    <h5 style="padding-bottom: 15px" class="text-start">Shop</h5>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Tennis</a
-                        >
+                <% categoryTypes.forEach(categoryType => { %>
+                    <div style="color: whitesmoke" class="col-md-2">
+                        <h5 style="padding-bottom: 15px" class="text-start"><%= categoryType.name; %></h5>
+                        <% categoryType.categories.forEach(category => { %>
+                            <div style="padding-bottom: 10px">
+                                <a class="link-light link-underline-opacity-0"
+                                   href="/categories/<%= category.slug %>"><%= category.name %></a>
+                            </div>
+                        <% }); %>
                     </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Golf</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Badminton</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Football</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Swimming</a
-                        >
-                    </div>
-                </div>
-                <div style="color: whitesmoke" class="col-md-2">
-                    <h5 style="padding-bottom: 15px" class="text-start">Brand</h5>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Nike</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >addidas</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Erke</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Jordan</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Ping</a
-                        >
-                    </div>
-                </div>
-                <div style="color: whitesmoke" class="col-md-2">
-                    <h5 style="padding-bottom: 15px" class="text-start">Equipment</h5>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Football</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Rackets</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Gym equipment</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Home fitness</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Water sport equipment</a
-                        >
-                    </div>
-                </div>
-                <div style="color: whitesmoke" class="col-md-2">
-                    <h5 style="padding-bottom: 15px" class="text-start">Sportwear</h5>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Men</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Women</a
-                        >
-                    </div>
-                    <div style="padding-bottom: 10px">
-                        <a class="link-light link-underline-opacity-0" href="shop.html"
-                        >Kids</a
-                        >
-                    </div>
-                </div>
+                <% }); %>
                 <div style="color: whitesmoke" class="col-md-2">
                     <h5 style="padding-bottom: 15px" class="text-start">Help</h5>
                     <div style="padding-bottom: 10px">
-                        <a
-                                class="link-light link-underline-opacity-0"
-                                href="contact-us.html "
-                        >Contact us</a
-                        >
+                        <a class="link-light link-underline-opacity-0" href="/contact-us">Contact us</a>
                     </div>
                 </div>
             </div>
@@ -162,217 +67,53 @@
     </div>
 
     <!-- Accordion when less than md -->
-    <div
-            class="accordion accordion-flush d-md-none"
-            id="accordionFlushExample"
-    >
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button
-                        class="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseOne"
-                        aria-expanded="false"
-                        aria-controls="flush-collapseOne"
-                >
-                    Shop
-                </button>
-            </h2>
-            <div
-                    id="flush-collapseOne"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#accordionFlushExample"
-            >
-                <ul
-                        style="padding-bottom: 10px"
-                        class="p-3 list-unstyled d-flex gap-2 flex-column"
-                >
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Tennis</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Golf</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Badminton</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Football</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Swimming</a
-                        >
-                    </li>
-                </ul>
+    <div class="accordion accordion-flush d-md-none" id="footer-accordion">
+        <% categoryTypes.forEach(categoryType => { %>
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+                    <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#flush-<%= categoryType.slug %>"
+                            aria-expanded="false"
+                            aria-controls="flush-<%= categoryType.slug %>"
+                    >
+                        <%= categoryType.name %>
+                    </button>
+                </h2>
+                <div id="flush-<%= categoryType.slug %>" class="accordion-collapse collapse"
+                     data-bs-parent="#footer-accordion">
+                    <ul style="padding-bottom: 10px" class="p-3 list-unstyled d-flex gap-2 flex-column">
+                        <% categoryType.categories.forEach(category => { %>
+                            <li>
+                                <a class="link-dark link-underline-opacity-0" href="/categories/<%= category.slug %>">
+                                    <%= category.name %>
+                                </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
             </div>
-        </div>
+        <% }) %>
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button
                         class="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseTwo"
+                        data-bs-target="#flush-help"
                         aria-expanded="false"
-                        aria-controls="flush-collapseTwo"
-                >
-                    Brand
-                </button>
-            </h2>
-            <div
-                    id="flush-collapseTwo"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#accordionFlushExample"
-            >
-                <ul
-                        style="padding-bottom: 10px"
-                        class="p-3 list-unstyled d-flex gap-2 flex-column"
-                >
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Nike</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Addidas</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Erke</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Jordan</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Ping</a
-                        >
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button
-                        class="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseThree"
-                        aria-expanded="false"
-                        aria-controls="flush-collapseThree"
-                >
-                    Equipment
-                </button>
-            </h2>
-            <div
-                    id="flush-collapseThree"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#accordionFlushExample"
-            >
-                <ul
-                        style="padding-bottom: 10px"
-                        class="p-3 list-unstyled d-flex gap-2 flex-column"
-                >
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >footballs</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Rackets</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Gym equipment</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Home fitness</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Water sport equipment</a
-                        >
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button
-                        class="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseFour"
-                        aria-expanded="false"
-                        aria-controls="flush-collapseFour"
-                >
-                    Sportwear
-                </button>
-            </h2>
-            <div
-                    id="flush-collapseFour"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#accordionFlushExample"
-            >
-                <ul
-                        style="padding-bottom: 10px"
-                        class="p-3 list-unstyled d-flex gap-2 flex-column"
-                >
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Men</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Women</a
-                        >
-                    </li>
-                    <li>
-                        <a class="link-dark link-underline-opacity-0" href="shop.html"
-                        >Kids</a
-                        >
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button
-                        class="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseFive"
-                        aria-expanded="false"
-                        aria-controls="flush-collapseFive"
+                        aria-controls="flush-help"
                 >
                     Help
                 </button>
             </h2>
             <div
-                    id="flush-collapseFive"
+                    id="flush-help"
                     class="accordion-collapse collapse"
-                    data-bs-parent="#accordionFlushExample"
+                    data-bs-parent="#footer-accordion"
             >
                 <ul
                         style="padding-bottom: 10px"

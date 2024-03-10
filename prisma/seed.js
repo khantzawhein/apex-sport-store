@@ -22,7 +22,27 @@ async function main() {
       message: 'Hello, I am interested in your product.'
     }
   });
-  console.log({ admin, inquiry });
+
+  const categoryTypes = ['Shop', 'Brands', 'Equipments', 'Sportswear'];
+
+  for (const type of categoryTypes) {
+    await prisma.category_Types.create({
+      data: {
+        name: type,
+        slug: type.replace(/\s/g, '-').toLowerCase()
+      }
+    });
+  }
+
+  await prisma.categories.create({
+    data: {
+      name: 'All Products',
+      slug: 'all-products',
+      category_type_id: 1
+    }
+  });
+
+  console.log({ admin, inquiry, categoryTypes });
 }
 
 main()

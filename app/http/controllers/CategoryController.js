@@ -4,8 +4,13 @@ const CategoryRequest = require('../requests/CategoryRequest');
 
 class CategoryController {
   async index(req, res) {
-    let categories = await prisma.categories.findMany();
-    res.render('admin/categories/index', { title: 'Categories', categories });
+    let categoryTypes = await prisma.category_Types.findMany();
+    let categories = await prisma.categories.findMany({
+      include: {
+        category_type: true
+      }
+    });
+    res.render('admin/categories/index', { title: 'Categories', categories, categoryTypes });
   }
 
   async store(req, res, next) {
@@ -17,7 +22,12 @@ class CategoryController {
     await prisma.categories.create({
       data: {
         name: categoryName,
-        slug: slug
+        slug: slug,
+        category_type: {
+          connect: {
+            id: parseInt(req.body.category_type)
+          }
+        }
       }
     });
     req.session.flash = { success: 'Category Created Successfully.' };
@@ -27,6 +37,7 @@ class CategoryController {
   }
 
   async edit(req, res, next) {
+    let categoryTypes = await prisma.category_Types.findMany();
     const data = await prisma.categories.findUnique({
       where: {
         id: parseInt(req.params.id)
@@ -35,7 +46,8 @@ class CategoryController {
     if (data) {
       return res.render('admin/categories/edit', {
         title: 'Edit Category',
-        category: data
+        category: data,
+        categoryTypes
       });
     }
     return res.redirect('/admin/category');
@@ -53,7 +65,12 @@ class CategoryController {
       },
       data: {
         name: categoryName,
-        slug: categoryName.toLowerCase().split(' ').join('-')
+        slug: categoryName.toLowerCase().split(' ').join('-'),
+        category_type: {
+          connect: {
+            id: parseInt(req.body.category_type)
+          }
+        }
       }
     });
     req.session.flash = { success: 'Category Updated Successfully.' };

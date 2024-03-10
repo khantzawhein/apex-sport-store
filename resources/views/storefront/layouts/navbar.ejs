@@ -1,127 +1,33 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-between">
     <div class="container-fluid">
         <a class="navbar-brand" href="/" style="width: 15%; min-width: 100px">
-            <img src="/images/Apex-logos_black.png" class="img-fluid" alt="Apex Logo" />
+            <img src="/images/Apex-logos_black.png" class="img-fluid" alt="Apex Logo" style="max-width: 80%" />
         </a>
-        <div class="collapse navbar-collapse order-3 order-lg-2 flex-grow-1" style="min-width: 60%" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse order-3 order-lg-2 flex-grow-1" style="min-width: 60%"
+             id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Shop
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="product_sportwear.html">Tennis</a></li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Golf</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Badminton</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Football</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Swimming</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Explore</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a
-                            class="nav-link dropdown"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        Brand
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="product_sportwear.html">Nike</a></li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Addidas</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Erke</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Jordan</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Ping</a>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Explore</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a
-                            class="nav-link dropdown"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        Equipment
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="product_equipment.html">Football</a></li>
-                        <li>
-                            <a class="dropdown-item" href="product_equipment.html">Rackets</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_equipment.html">Gym equipment</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_equipment.html">Home fitness</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_equipment.html">Water sport equipment</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_equipment.html">Explore</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a
-                            class="nav-link dropdown"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        Sportwear
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="product_sportwear.html">Men</a></li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Women</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Kids</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="product_sportwear.html">Explore</a>
-                        </li>
-                    </ul>
-                </li>
+                <% categoryTypes.forEach(categoryType => { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <%= categoryType.name; %>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <% categoryType.categories.forEach(category => { %>
+                                <% if (category.slug === "all-products") { %>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                <% } %>
+                                <li>
+                                    <a class="dropdown-item"
+                                       href="/categories/<%= category.slug; %>"><%= category.name; %></a>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </li>
+                <% }); %>
 
                 <li class="nav-item">
                     <a class="nav-link active" href="#" aria-disabled="false"
@@ -130,7 +36,7 @@
                 </li>
             </ul>
         </div>
-        <div class="d-flex align-items-center order-lg-3 order-2" >
+        <div class="d-flex align-items-center order-lg-3 order-2">
             <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -162,7 +68,7 @@
             </form>
             <a
                     class="nav-link active"
-                    href="#"
+                    href="/login"
                     aria-disabled="false"
                     style="margin-right: 1.5rem"
             ><i class="fa-solid fa-user fa-lg" style="color: #19204e"></i>
