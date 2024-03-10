@@ -26,15 +26,27 @@ class ProductController {
       const category = await prisma.categories.findFirstOrThrow({
         where: {
           slug: categorySlug
-        }
-      });
-      const query = {
-        where: {
-          categories: {
-            some: { category_id: category.id }
+        },
+        include: {
+          category_type: {
+            include: {
+              categories: true
+            }
           }
         }
-      };
+      });
+      let query = {};
+      if (category.slug === 'all-products') {
+        query = {};
+      } else {
+        query = {
+          where: {
+            categories: {
+              some: { category_id: category.id }
+            }
+          }
+        };
+      }
       const page = Math.abs(req.query.page) || 1;
       const perPage = 15;
       const productCount = await prisma.products.count(query);

@@ -7,7 +7,7 @@ class CategoryRequest extends FormRequest {
   async rules() {
     const categoryTypes = await prisma.category_Types.findMany();
     return Joi.object({
-      categoryName: Joi.string().alphanum().label('Category Name').min(1).max(30).required(),
+      categoryName: Joi.string().label('Category Name').min(1).max(30).required(),
       category_type: Joi.number()
         .valid(...categoryTypes.map((type) => type.id))
         .label('Category Type')

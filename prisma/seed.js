@@ -23,7 +23,7 @@ async function main() {
     }
   });
 
-  const categoryTypes = ['Sports', 'Brands', 'Equipments', 'Sportswear'];
+  const categoryTypes = ['Shop', 'Brands', 'Equipments', 'Sportswear'];
 
   for (const type of categoryTypes) {
     await prisma.category_Types.create({
@@ -33,6 +33,15 @@ async function main() {
       }
     });
   }
+
+  await prisma.categories.create({
+    data: {
+      name: 'All Products',
+      slug: 'all-products',
+      category_type_id: 1
+    }
+  });
+
   console.log({ admin, inquiry, categoryTypes });
 }
 

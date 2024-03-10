@@ -3,26 +3,27 @@
 <!-- Breadcrumb -->
 <%- include("../partials/breadcrumb", {breadcrumbs: [
 {"url": "/", "name": "Home"},
-{"url": "/shop", "name": "Shop"},
+{"url": `/types/${category.category_type.slug}`, "name": category.category_type.name},
 { "name": category.name}
 ]}) %>
 
 <!-- Discount Carousel -->
 <div
-        id="carouselExampleAutoplaying"
-        class="carousel slide container-fluid"
+        id="discount-carousel"
+        class="carousel slide container-fluid w-75"
+        data-bs-ride="carousel"
 
 >
     <div class="carousel-indicators">
         <button
                 type="button"
-                data-bs-target="#demo"
+                data-bs-target="#discount-carousel"
                 data-bs-slide-to="0"
                 class="active"
         ></button>
         <button
                 type="button"
-                data-bs-target="#demo"
+                data-bs-target="#discount-carousel"
                 data-bs-slide-to="1"
         ></button>
     </div>
@@ -30,15 +31,15 @@
         <div class="carousel-item active">
             <img
                     src="/images/discount-img1.jpg"
-                    class="img-fluid d-block carousel_style carousel-img"
-                    alt="disocunt banner"
+                    class="img-fluid d-block carousel_style" style="max-height: 25rem; width: 100%; object-fit: cover"
+                    alt="discount banner"
             />
         </div>
         <div class="carousel-item">
             <img
                     src="/images/discount-img2.jpg"
-                    class="img-fluid d-block carousel_style carousel-img"
-                    alt="dicscount banner"
+                    class="img-fluid d-block carousel_style" style="max-height: 25rem; width: 100%; object-fit: cover"
+                    alt="discount banner"
             />
         </div>
     </div>
@@ -46,7 +47,7 @@
     <button
             class="carousel-control-prev"
             type="button"
-            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-target="#discount-carousel"
             data-bs-slide="prev"
     >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -55,7 +56,7 @@
     <button
             class="carousel-control-next"
             type="button"
-            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-target="#discount-carousel"
             data-bs-slide="next"
     >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -72,21 +73,13 @@
             </div>
 
             <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">All</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Trending</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Women</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Men</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kids</a>
-                </li>
+                <% category.category_type.categories.forEach(cateTypeCategory => { %>
+                    <li class="nav-item">
+                        <a class="nav-link <%= cateTypeCategory.id === category.id ? "active" : "" %>" aria-current="page"
+                           href="/categories/<%= cateTypeCategory.slug %>#product-display"><%= cateTypeCategory.name %>
+                        </a>
+                    </li>
+                <% }) %>
             </ul>
         </div>
     </div>
@@ -138,7 +131,7 @@
   let totalPages = <%= totalPages %>
     $(document).ready(() => {
       function loadPage(page, scrollBack = false) {
-        axios.get(`/categories/<%= category.slug %>/products?page=${page}`)
+        axios.get(`/categories/<%= category.slug %>/?page=${page}`)
           .then(({ data }) => {
             $("#product-container").html(data.html)
             setPaginationItemActive()
