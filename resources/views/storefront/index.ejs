@@ -1,7 +1,7 @@
 <%- include("./layouts/header") %>
 
 <!-- Carousel -->
-<%- include("./partials/carousel.ejs")%>
+<%- include("./partials/carousel.ejs") %>
 
 <!-- New Release -->
 <div class="container">
@@ -12,108 +12,36 @@
             </div>
         </div>
         <div id="new-release-product" class="overflow-auto d-flex gap-3">
-            <div class="col-3">
-                <div class="card h-100">
-                    <img
-                            src="Images/release-img1.png"
-                            class="card-img-top"
-                            alt="image1"
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title card-header-style fs-5">Nike Air 2024</h5>
-                    </div>
-                    <div
-                            style="border: none; background-color: transparent"
-                            class="card-footer p-3"
-                    >
-                        <button type="button" class="btn btn-warning shop-now-button">
-                            Shop Now
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card h-100">
-                    <img
-                            src="Images/release-img1.png"
-                            class="card-img-top"
-                            alt="image1"
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title card-header-style fs-5">Nike Air 2024</h5>
-                    </div>
-                    <div
-                            style="border: none; background-color: transparent"
-                            class="card-footer p-3"
-                    >
-                        <button type="button" class="btn btn-warning shop-now-button">
-                            Shop Now
-                        </button>
+            <% newProducts.forEach((newProduct) => { %>
+                <div class="col-auto">
+                    <div class="card h-100 position-relative" style="min-width: 150px;">
+                        <img
+                                src="<%= newProduct.product_images[0]?.image_path; %>"
+                                class="card-img-top product-card-img"
+                                alt="Image of <%= newProduct.name; %>"
+                        />
+
+                        <div class="product-card-upper-layer position-absolute">
+                            <div class="product-card-inner-layer">
+                                <a class="text-decoration-none product-card-title"
+                                   href="/products/<%= newProduct.slug %>">
+                                    <h5 class="card-title card-header-style fw-bold"><%= newProduct.name; %></h5>
+                                </a>
+
+                                <div class="price">
+                                    <p class="card-text text-white fw-bold">
+                                        ฿ <%= newProduct.price.toLocaleString(); %>
+                                    </p>
+                                </div>
+
+                                <a href="/products/<%= newProduct.slug %>" class="btn btn-sm rounded-2 mt-2 btn-apex">
+                                    Shop Now
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-3">
-                <div class="card h-100">
-                    <img
-                            src="Images/release-img1.png"
-                            class="card-img-top"
-                            alt="image1"
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title card-header-style fs-5">Nike Air 2024</h5>
-                    </div>
-                    <div
-                            style="border: none; background-color: transparent"
-                            class="card-footer p-3"
-                    >
-                        <button type="button" class="btn btn-warning shop-now-button">
-                            Shop Now
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card h-100">
-                    <img
-                            src="Images/release-img2.png"
-                            class="card-img-top"
-                            alt="..."
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title card-header-style fs-5">Ping Golf</h5>
-                    </div>
-                    <div
-                            style="border: none; background-color: transparent"
-                            class="card-footer p-3"
-                    >
-                        <button type="button" class="btn btn-warning shop-now-button">
-                            Shop Now
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card h-100">
-                    <img
-                            src="Images/release-img3.jpg"
-                            class="card-img-top"
-                            alt="..."
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title card-header-style fs-5">
-                            Nike Sport Bra
-                        </h5>
-                    </div>
-                    <div
-                            style="border: none; background-color: transparent"
-                            class="card-footer p-3"
-                    >
-                        <button type="button" class="btn btn-warning shop-now-button">
-                            Shop Now
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <% }); %>
         </div>
 
         <!-- New Release load forward and backward button -->
@@ -147,7 +75,7 @@
             <div class="col-md-6 mt-5">
                 <img
                         class="img-fluid mx-auto d-block"
-                        src="Images/badminton.png"
+                        src="images/badminton.png"
                         alt="badminton"
                 />
             </div>
@@ -159,9 +87,9 @@
                 </h1>
                 <p class="fw-light">get yours today</p>
                 <div>
-                    <button type="button" class="btn btn-warning shop-now-button">
+                    <a href="/categories/equipments" type="button" class="btn btn-warning shop-now-button">
                         Shop Now
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -171,145 +99,37 @@
 <!-- feature products -->
 <section id="feature-products">
     <div class="container">
-        <h2 class="text-start fw-bold">Feature Products</h2>
+        <h2 class="text-start fw-bold">Featured Products</h2>
     </div>
     <div class="feature_bg py-5">
         <div class="container">
             <div class="row">
-                <div class="col-4 my-4">
-                    <div class="card">
+                <% featuredProducts.forEach(featuredProduct => { %>
+                <div class="col-lg-3 col-6 my-4">
+                    <div class="card h-100">
                         <img
-                                src="Images/football-shoes.jpg"
+                                src="<%= featuredProduct.product_images[0]?.image_path %>"
                                 class="card-img-top object-fit-cover border rounded"
-                                style="max-height: 400px"
+                                style="height: 17rem;"
                                 alt="football-shoes"
                         />
 
                         <div class="card-body">
-                            <h5 class="card-title card-header-style">Nike Footwear</h5>
+                            <h5 class="card-title card-header-style"><%= featuredProduct.name %></h5>
                         </div>
                         <div
                                 style="border: none; background-color: transparent"
                                 class="card-footer p-3"
                         >
-                            <button type="button" class="btn feature_button shop-now-button">
+                            <a href="/products/<%= featuredProduct.slug %>" type="button" class="btn feature_button shop-now-button">
                                 Shop Now
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-4 my-4">
-                    <div class="card">
-                        <img
-                                src="Images/hockey.jpg"
-                                class="card-img-top object-fit-cover border rounded"
-                                style="max-height: 400px"
-                                alt="football-shoes"
-                        />
+                <% }); %>
 
-                        <div class="card-body">
-                            <h5 class="card-title card-header-style">Nike Footwear</h5>
-                        </div>
-                        <div
-                                style="border: none; background-color: transparent"
-                                class="card-footer p-3"
-                        >
-                            <button type="button" class="btn feature_button shop-now-button">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 my-4">
-                    <div class="card">
-                        <img
-                                src="Images/football-shoes.jpg"
-                                class="card-img-top object-fit-cover border rounded"
-                                style="max-height: 400px"
-                                alt="football-shoes"
-                        />
-
-                        <div class="card-body">
-                            <h5 class="card-title card-header-style">Nike Footwear</h5>
-                        </div>
-                        <div
-                                style="border: none; background-color: transparent"
-                                class="card-footer p-3"
-                        >
-                            <button type="button" class="btn feature_button shop-now-button">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 my-4">
-                    <div class="card">
-                        <img
-                                src="Images/badminton.png"
-                                class="card-img-top object-fit-cover border rounded"
-                                style="max-height: 400px"
-                                alt="football-shoes"
-                        />
-
-                        <div class="card-body">
-                            <h5 class="card-title card-header-style">Nike Footwear</h5>
-                        </div>
-                        <div
-                                style="border: none; background-color: transparent"
-                                class="card-footer p-3"
-                        >
-                            <button type="button" class="btn feature_button shop-now-button">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 my-4">
-                    <div class="card">
-                        <img
-                                src="Images/volleyball.jpg"
-                                class="card-img-top object-fit-cover border rounded"
-                                style="max-height: 400px"
-                                alt="football-shoes"
-                        />
-
-                        <div class="card-body">
-                            <h5 class="card-title card-header-style">Nike Footwear</h5>
-                        </div>
-                        <div
-                                style="border: none; background-color: transparent"
-                                class="card-footer p-3"
-                        >
-                            <button type="button" class="btn feature_button shop-now-button">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 my-4">
-                    <div class="card">
-                        <img
-                                src="Images/pink_sportbra.png"
-                                class="card-img-top object-fit-cover border rounded"
-                                style="max-height: 400px"
-                                alt="football-shoes"
-                        />
-
-                        <div class="card-body">
-                            <h5 class="card-title card-header-style">Nike Footwear</h5>
-                        </div>
-                        <div
-                                style="border: none; background-color: transparent"
-                                class="card-footer p-3"
-                        >
-                            <button type="button" class="btn feature_button shop-now-button">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-grid col-6 mx-auto py-3">
+                <div class="d-grid col-12 mx-auto py-3">
                     <button type="button" class="btn btn-outline-dark">Shop More</button>
 
                 </div>
@@ -319,26 +139,26 @@
 </section>
 
 <div class="container">
-    <!-- Sportwear shop now -->
-    <section id="Sportwear">
+    <!-- Sportswear shop now -->
+    <section id="Sportswear">
         <div class="row flex-column-reverse flex-md-row">
             <div
                     class="text-center col-md-6 mt-md-0 mt-4 d-flex flex-column justify-content-center"
             >
                 <h1 class="fst-italic fw-bold">
-                    Your favorite sportwear in one place
+                    Your favorite sportswear in one place
                 </h1>
                 <p class="fw-light">get yours today</p>
                 <div>
-                    <button type="button" class="btn btn-warning shop-now-button">
+                    <a href="/categories/sportwears" type="button" class="btn btn-warning shop-now-button">
                         Shop Now
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="col-md-6 mt-5">
                 <img
                         class="img-fluid mx-auto d-block"
-                        src="Images/pink_sportbra.png"
+                        src="images/pink_sportbra.png"
                         alt="pink_sportbra"
                 />
             </div>
@@ -348,12 +168,13 @@
 
 <script>
   $(document).ready(function() {
+    const newReleaseProduct = $("#new-release-product")
     $("#new-release-product-scroll-left").click(function() {
-      $("#new-release-product").animate({ scrollLeft: 0 });
+      newReleaseProduct.animate({ scrollLeft: newReleaseProduct.scrollLeft() - 200 });
     });
 
     $("#new-release-product-scroll-right").click(function() {
-      $("#new-release-product").animate({ scrollLeft:  };
+      newReleaseProduct.animate({ scrollLeft: newReleaseProduct.scrollLeft() + 200 });
     });
   });
 </script>

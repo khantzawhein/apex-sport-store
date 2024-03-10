@@ -22,7 +22,18 @@ async function main() {
       message: 'Hello, I am interested in your product.'
     }
   });
-  console.log({ admin, inquiry });
+
+  const categoryTypes = ['Sports', 'Brands', 'Equipments', 'Sportswear'];
+
+  for (const type of categoryTypes) {
+    await prisma.category_Types.create({
+      data: {
+        name: type,
+        slug: type.replace(/\s/g, '-').toLowerCase()
+      }
+    });
+  }
+  console.log({ admin, inquiry, categoryTypes });
 }
 
 main()

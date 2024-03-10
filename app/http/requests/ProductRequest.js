@@ -13,10 +13,10 @@ class ProductRequest extends FormRequest {
       })
     ).map((category) => category.id);
     return Joi.object({
-      product_name: Joi.string().alphanum().label('Product Name').min(1).max(100).required(),
+      product_name: Joi.string().label('Product Name').min(1).max(100).required(),
       product_price: Joi.number().label('Product Price').min(0).required(),
-      discount_price: Joi.number().label('Discount Price').min(0),
-      product_description: Joi.string().label('Product Description').max(10000),
+      discount_price: Joi.number().allow('').label('Discount Price').min(0).optional(),
+      product_description: Joi.string().allow('').label('Product Description').max(10000).optional(),
       is_featured_product: Joi.boolean().label('Is Featured Product').optional(),
       is_new_product: Joi.boolean().label('Is New Product').optional(),
       categories: Joi.array()
