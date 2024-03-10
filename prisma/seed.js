@@ -23,7 +23,7 @@ async function main() {
     }
   });
 
-  const categoryTypes = ['Shop', 'Brands', 'Equipments', 'Sportswear'];
+  const categoryTypes = ['Shop', 'Brands', 'Accessories', 'Sportswear'];
 
   for (const type of categoryTypes) {
     await prisma.category_Types.create({

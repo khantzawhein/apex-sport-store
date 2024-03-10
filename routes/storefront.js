@@ -3,6 +3,7 @@ const HomePageController = require('../app/http/controllers/storefront/HomePageC
 const ProductController = require('../app/http/controllers/storefront/ProductController');
 const AuthController = require('../app/http/controllers/storefront/AuthController');
 const { Router } = require('express');
+const ContactUsController = require('../app/http/controllers/storefront/ContactUsController');
 
 const router = express.Router();
 
@@ -16,5 +17,7 @@ router.get('/', HomePageController.index);
 router.get('/categories/:slug', ProductController.indexByCategory);
 router.get('/products', ProductController.index);
 router.get('/products/:slug', ProductController.show);
+
+router.get('/contact-us', ContactUsController.index);
 
 module.exports = router;
