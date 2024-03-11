@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 class HomePageController {
-  async index(req, res) {
+  async index(req, res, next) {
     const productFilter = {
       orderBy: {
         created_at: 'desc'

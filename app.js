@@ -10,6 +10,7 @@ const adminRouter = require('./routes/admin');
 const storeFrontRouter = require('./routes/storefront');
 const MiddlewareServiceProvider = require('./app/http/providers/MiddlewareServiceProvider');
 const ValidationError = require('./app/exceptions/ValidationError');
+const axios = require('axios');
 const app = express();
 global.__basedir = __dirname;
 
@@ -48,17 +49,20 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(async function (err, req, res, next) {
   if (err instanceof ValidationError) {
     return err.render(req, res);
   }
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  const {
+    data: { data }
+  } = await axios.get(`https://api.giphy.com/v1/gifs/random?api_key=${process.env.GIPHY_KEY}&rating=3&tag=funny-dogs`);
+  const gif = data.images.fixed_height.url;
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { gif });
 });
 
 module.exports = app;
