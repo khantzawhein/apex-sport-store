@@ -1,0 +1,60 @@
+<%- include("./layouts/header") %>
+
+<!-- Breadcrumb -->
+<%- include("./partials/breadcrumb", {breadcrumbs: [
+{"url": "/", "name": "Home"},
+{ "name": "Contact Us"}
+]}) %>
+
+<section id="contact-us">
+  <div class="container">
+    <div class="row d-flex">
+        <div class="col-lg-6 col-12">
+            <div class="card" style="width: 40rem; height: 10rem;">  <img src="/images/contact-us-bg.png" class="card-img-top img-fluid " alt="contact us">
+                <div class="product-card-inner-layer mt-4">
+                  
+                   <h5 style="color: whitesmoke; font-size: 2rem;" class="text-start fw-bold">Get in touch</h5>
+                   <h6 style="color: whitesmoke; font-size: 1.5rem;" class="text-start fw-light">Visit Us </h6>
+                   <p style="color: whitesmoke; font-size: 1.5rem;" class="text-start fw-light">239/3 Huay Kaew Road, Suthep, ChiangMai, 50200, Thailand</p>
+                  
+                </div>
+            </div>          
+        </div>
+        <form class="col-lg-6 col-12 "> 
+          <div class="d-flex gap-5 ">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+            <input  type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+        </div>
+        <div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+        </div>
+        <div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+        </div>
+        <label for="exampleInputEmail1" class="form-label">Email</label>
+        <div class="form-floating">  
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 15rem "></textarea>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-apex mt-5 ">Send</button>
+        </div>
+        
+        </form>
+        
+    </div>
+  </div>
+</section>
+
+<%- include("../layouts/footer") %>

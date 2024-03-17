@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 class ContactUsController {
   index(req, res) {
-    res.render('storefront/contact-us');
+    res.render('storefront/contact-us', {title: 'Contact Us'});
   }
 }
 
