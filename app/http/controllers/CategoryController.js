@@ -8,6 +8,9 @@ class CategoryController {
     let categories = await prisma.categories.findMany({
       include: {
         category_type: true
+      },
+      orderBy: {
+        name: 'asc'
       }
     });
     res.render('admin/categories/index', { title: 'Categories', categories, categoryTypes });

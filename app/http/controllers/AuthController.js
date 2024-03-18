@@ -47,15 +47,19 @@ class AuthController {
       req.session.flash = { error: 'Invalid Credentials, Please Try Again.' };
       return req.session.save(() => res.redirect('/admin/login'));
     }
+    const customer = req.session.customer;
+    const cart = req.session.cart;
     req.session.regenerate((err) => {
       req.session.user = user;
+      if (customer) req.session.customer = customer;
+      if (cart) req.session.cart = cart;
       req.session.save(() => res.redirect('/admin'));
     });
   }
 
   async logout(req, res, next) {
-    req.session.destroy();
-    res.redirect('/admin/login');
+    req.session.user = null;
+    req.session.save(() => res.redirect('/admin/login'));
   }
 }
 

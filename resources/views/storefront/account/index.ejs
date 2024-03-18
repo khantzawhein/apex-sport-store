@@ -1,0 +1,56 @@
+<%- include("../layouts/header") %>
+
+<!-- Breadcrumb -->
+<%- include("../partials/breadcrumb", {breadcrumbs: [
+{"url": "/", "name": "Home"},
+{ "name": "Your Account"}
+]}) %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h2>Order History</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Items</th>
+                        <th>Order Total</th>
+                        <th>Order Status</th>
+                        <th>Ordered At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% sales.forEach(function(sale) { %>
+                        <tr>
+                            <td>#<%= sale.id %></td>
+                            <td><%= sale.total_items %></td>
+                            <td>฿<%= sale.total_price %></td>
+                            <td>Success</td>
+                            <td class="created-at"><%= sale.created_at.toISOString() %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <h3>Account Information</h3>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><%= session.customer.name %></h5>
+                    <div class="card-text">
+                        <p class="m-0 mb-2"><%= session.customer.email %></p>
+                        <p class="m-0 mb-2"><%= session.customer.phone %></p>
+                        <p class="m-0 mb-2"><%= session.customer.address %></p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/logout" class="btn btn-danger d-grid">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../layouts/footer") %>
