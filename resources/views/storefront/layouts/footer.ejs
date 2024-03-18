@@ -161,5 +161,12 @@
     'hideMethod': 'fadeOut'
   };
 </script>
+<script>
+  $('.created-at,.updated-at').each(function(index, element) {
+    const date = new Date(element.textContent);
+    element.textContent = date.toLocaleString();
+  });
+</script>
+<%- include('./toastr') %>
 </body>
 </html>

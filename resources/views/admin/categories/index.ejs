@@ -89,13 +89,18 @@
                     <td><%= category.category_type?.name %></td>
                     <td>
                         <div class="d-flex gap-2">
-                            <a href="/admin/category/edit/<%- category.id; %>"
+                            <a href="/admin/category/edit/<%- category.id; %>" title="Edit"
                                class="btn btn-outline-secondary">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a data-id="<%= category.id; %>" href="#"
+                            <a data-id="<%= category.id; %>" href="#" title="Delete"
                                class="deleteCategory btn btn-outline-danger">
                                 <i class="fas fa-trash"></i>
+                            </a>
+                            <a href="/admin/products?category_id=<%= category.id %>"
+                               title="View Products"
+                               class="btn btn-outline-apex">
+                                <i class="fas fa-list"></i>
                             </a>
                         </div>
                     </td>

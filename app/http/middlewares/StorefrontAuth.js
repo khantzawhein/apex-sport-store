@@ -1,12 +1,12 @@
 async function handle(req, res, next) {
-  if (req.path === '/login') {
-    if (req.session.user) {
-      return res.redirect('/admin');
+  if (req.originalUrl === '/login') {
+    if (req.session.customer) {
+      return res.redirect('/');
     }
     return next();
   }
-  if (!req.session.user) {
-    return res.redirect('/admin/login');
+  if (!req.session.customer) {
+    return res.redirect('/login');
   }
   return next();
 }

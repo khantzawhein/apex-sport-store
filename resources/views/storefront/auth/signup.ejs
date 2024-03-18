@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Apex</title>
+    <title>Sign Up - Apex</title>
     <link rel="stylesheet" href="/css/auth.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,7 +26,7 @@
             <form action="/signup" method="post" class="mt-5">
                 <%- include("../../components/validation-error") %>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Full Name">
+                    <input type="text" class="form-control" name="full_name" placeholder="Full Name">
                     <i class="fas fa-address-book"></i>
                 </div>
                 <div class="form-group">
@@ -40,6 +40,11 @@
                 <div class="form-group">
                     <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
                     <i class="fas fa-lock"></i>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="phone" placeholder="Phone">
+                    <i class="fas fa-phone"></i>
                 </div>
 
                 <div class="form-group">
@@ -64,7 +69,7 @@
     </div>
     <div class="right col-lg-6 d-none d-lg-block">
         <div class="login-graphic-container d-flex justify-content-center align-items-center h-100">
-            <img src="/images/signup-graphic.svg" alt="Login" style="max-width: 70%; height: auto">
+            <img src="/images/customer-signup.svg" alt="Login" style="max-width: 70%; height: auto">
         </div>
     </div>
 </div>

@@ -94,6 +94,8 @@ model Product_Images {
 
 model Sale_Items {
   id          Int       @id @default(autoincrement())
+  sale        Sales     @relation(fields: [sale_id], references: [id], onDelete: Cascade)
+  sale_id     Int
   product     Products? @relation(fields: [product_id], references: [id], onDelete: SetNull)
   product_id  Int?
   quantity    Int
@@ -109,6 +111,7 @@ model Sales {
   total_items Int
   total_price Float
   customer    Customers? @relation(fields: [customer_id], references: [id], onDelete: SetNull)
+  sale_items  Sale_Items[]
   created_at  DateTime   @default(dbgenerated("now()")) @db.Timestamp()
   updated_at  DateTime   @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }

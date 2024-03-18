@@ -8,7 +8,16 @@ const prisma = new PrismaClient();
 
 class ProductController {
   async index(req, res, next) {
+    const categoryId = req.query.category_id;
+    const bestSeller = req.query.best_seller || false;
     const products = await prisma.products.findMany({
+      where: {
+        categories: {
+          some: {
+            category_id: categoryId ? parseInt(categoryId) : undefined
+          }
+        }
+      },
       include: {
         categories: {
           include: {
@@ -16,7 +25,15 @@ class ProductController {
           }
         },
         product_images: true
-      }
+      },
+      orderBy: {
+        sales_count: 'desc'
+      },
+      ...(bestSeller
+        ? {
+            take: 10
+          }
+        : {})
     });
     res.render('admin/products/index', { title: 'Product List', products });
   }
