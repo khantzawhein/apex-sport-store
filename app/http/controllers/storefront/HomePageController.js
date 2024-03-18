@@ -28,7 +28,7 @@ class HomePageController {
       },
       ...productFilter
     });
-    res.render('storefront/index', { newProducts, featuredProducts });
+    res.render('storefront/index', { newProducts, featuredProducts, title: 'Home' });
   }
 }
 

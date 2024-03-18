@@ -62,7 +62,7 @@ app.use(async function (err, req, res, next) {
   const gif = data.images.fixed_height.url;
   // render the error page
   res.status(err.status || 500);
-  res.render('error', { gif });
+  res.render('error', { gif, title: 'Error' });
 });
 
 module.exports = app;

@@ -7,12 +7,14 @@
 // Configuration
 @import "../../node_modules/bootstrap/scss/functions";
 $apex: #FCB300;
+$navy: #19204e;
 $component-active-bg: $apex;
 $focus-ring-color: rgba($apex, 0.3);
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
 $apex-colors: (
         "apex": $apex,
+        "navy": $navy
 );
 $theme-colors: map-merge($theme-colors, $apex-colors);
 

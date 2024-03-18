@@ -3,8 +3,11 @@ const prisma = new PrismaClient();
 
 class InquiryController {
   async index(req, res) {
-    const inquiries = await prisma.inquiries.findMany();
-    console.log(inquiries);
+    const inquiries = await prisma.inquiries.findMany({
+      orderBy: {
+        created_at: 'desc'
+      }
+    });
     res.render('admin/inquiries/index', {
       title: 'Inquiries',
       inquiries
