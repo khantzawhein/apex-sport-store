@@ -4,6 +4,8 @@ const ProductController = require('../app/http/controllers/storefront/ProductCon
 const AuthController = require('../app/http/controllers/storefront/AuthController');
 const { Router } = require('express');
 const ContactUsController = require('../app/http/controllers/storefront/ContactUsController');
+const CartController = require('../app/http/controllers/storefront/CartController');
+const CheckoutController = require('../app/http/controllers/storefront/CheckoutController');
 
 const router = express.Router();
 
@@ -19,5 +21,12 @@ router.get('/products', ProductController.index);
 router.get('/products/:slug', ProductController.show);
 
 router.get('/contact-us', ContactUsController.index);
+router.post('/contact-us', ContactUsController.store);
+
+router.get('/cart', CartController.index);
+router.post('/cart', CartController.store);
+router.post('/cart/update', CartController.update);
+
+router.post('/checkout', CheckoutController.store);
 
 module.exports = router;

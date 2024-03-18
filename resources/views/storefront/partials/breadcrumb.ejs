@@ -6,7 +6,7 @@
                     <% breadcrumbs.forEach((crumb, index) => { %>
                         <li class="breadcrumb-item <%= index === breadcrumbs.length - 1 ? 'active' : '' ;%>">
                             <% if (crumb.url) { %>
-                                <a href="<%= crumb.url; %>"><%= crumb.name; %></a>
+                                <a class="text-secondary text-decoration-none" href="<%= crumb.url; %>"><%= crumb.name; %></a>
                             <% } else { %>
                                 <%= crumb.name; %>
                             <% } %>

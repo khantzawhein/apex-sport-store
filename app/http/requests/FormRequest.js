@@ -9,7 +9,6 @@ class FormRequest {
     const { error, value } = (await this.rules()).validate(data, {
       abortEarly: false
     });
-    console.log(data);
     if (error) {
       const newError = new ValidationError(error.message, error.details);
       if (next) return next(newError);

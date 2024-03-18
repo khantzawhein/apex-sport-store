@@ -2,16 +2,18 @@
     <div class="col-6 my-4 col-md-4 col-lg-3">
 
         <div class="card h-100">
-            <img
-                    src="/<%= product.product_images[0]?.image_path ;%>"
-                    class="card-img-top object-fit-cover border rounded"
-                    style="height: 300px"
-                    alt="football-shoes"
-            />
+            <a href="/products/<%= product.slug %>">
+                <img
+                        src="/<%= product.product_images[0]?.image_path; %>"
+                        class="card-img-top object-fit-cover border rounded"
+                        style="height: 300px"
+                        alt="football-shoes"
+                />
+            </a>
 
             <div class="card-body">
                 <h5 class="card-title product_detail_style">
-                    <%= product.name ;%>
+                    <a class="text-black text-decoration-none" href="/products/<%= product.slug %>"><%= product.name; %></a>
                 </h5>
                 <div class="d-flex gap-3">
                     <% if (product.promotional_price) { %>
@@ -20,15 +22,15 @@
                                     class="fa-solid fa-baht-sign"
                                     style="color: #f83f64"
                             ></i>
-                            <%= product.promotional_price ;%>
+                            <%= product.promotional_price; %>
                         </p>
                     <% } %>
-                    <p class="text-start <%= product.promotional_price ? 'fw-light text-decoration-line-through' : 'fw-medium' ;%>">
+                    <p class="text-start <%= product.promotional_price ? 'fw-light text-decoration-line-through' : 'fw-medium'; %>">
                         <i
                                 class="fa-solid fa-baht-sign"
                                 style="color: #616161"
                         ></i>
-                        <%= product.price ;%>
+                        <%= product.price; %>
                     </p>
                 </div>
             </div>

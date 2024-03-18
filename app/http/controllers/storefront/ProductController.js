@@ -9,10 +9,34 @@ class ProductController {
       const product = await prisma.products.findFirstOrThrow({
         where: {
           slug: req.params.slug
+        },
+        include: {
+          product_images: true,
+          categories: true
         }
       });
-      res.render('products/show', { product });
+
+      const relatedProducts = await prisma.products.findMany({
+        where: {
+          NOT: {
+            id: product.id
+          },
+          categories: {
+            some: {
+              category_id: {
+                in: product.categories.map((category) => category.category_id)
+              }
+            }
+          }
+        },
+        take: 10,
+        include: {
+          product_images: true
+        }
+      });
+      res.render('storefront/products/show', { product, relatedProducts, title: product.name });
     } catch (error) {
+      console.log(error);
       next(createError(404, 'Product not found'));
     }
   }
@@ -56,7 +80,8 @@ class ProductController {
       res.render('storefront/products/index', {
         category,
         totalPages: Math.ceil(productCount / perPage),
-        currentPage: page
+        currentPage: page,
+        title: `${category.name}`
       });
     } catch (error) {
       console.log(error);
