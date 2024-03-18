@@ -53,6 +53,10 @@ app.use(async function (err, req, res, next) {
   if (err instanceof ValidationError) {
     return err.render(req, res);
   }
+
+  if (req.originalUrl.startsWith('/admin')) {
+    return res.status(500).json({ message: err.message, err });
+  }
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

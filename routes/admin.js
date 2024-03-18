@@ -66,6 +66,7 @@ router.post('/products/delete/:id', ProductController.delete);
  * Sales
  */
 router.get('/sales', SaleController.index);
+router.get('/sales/:id', SaleController.show);
 
 /**
  * Inquiries
