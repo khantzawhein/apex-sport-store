@@ -34,14 +34,6 @@ async function main() {
     });
   }
 
-  await prisma.categories.create({
-    data: {
-      name: 'All Products',
-      slug: 'all-products',
-      category_type_id: 1
-    }
-  });
-
   console.log({ admin, inquiry, categoryTypes });
 }
 

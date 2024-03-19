@@ -1,86 +1,97 @@
 <%- include("../layouts/header") %>
 
 <!-- Breadcrumb -->
-<%- include("../partials/breadcrumb", {breadcrumbs: [
-{"url": "/", "name": "Home"},
-{"url": `/types/${category.category_type.slug}`, "name": category.category_type.name},
-{ "name": category.name}
-]}) %>
+<% let breadcrumbs = type === "category" ? [
+            { "url": "/", "name": "Home" },
+            { "url": `/types/${category.category_type.slug}`, "name": category.category_type.name },
+            { "name": category.name }]
+        : [
+            { "url": "/", "name": "Home" },
+            { "name": "Products" }
+            ] %>
 
-<!-- Discount Carousel -->
-<div
-        id="discount-carousel"
-        class="carousel slide container-fluid w-75"
-        data-bs-ride="carousel"
+<%- include("../partials/breadcrumb", {breadcrumbs}) %>
 
->
-    <div class="carousel-indicators">
+<% if (type === "category")  { %>
+    <!-- Discount Carousel -->
+    <div
+            id="discount-carousel"
+            class="carousel slide container-fluid w-75 mb-5"
+            data-bs-ride="carousel"
+
+    >
+        <div class="carousel-indicators">
+            <button
+                    type="button"
+                    data-bs-target="#discount-carousel"
+                    data-bs-slide-to="0"
+                    class="active"
+            ></button>
+            <button
+                    type="button"
+                    data-bs-target="#discount-carousel"
+                    data-bs-slide-to="1"
+            ></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img
+                        src="/images/discount-img1.jpg"
+                        class="img-fluid d-block carousel_style"
+                        style="max-height: 25rem; width: 100%; object-fit: cover"
+                        alt="discount banner"
+                />
+            </div>
+            <div class="carousel-item">
+                <img
+                        src="/images/discount-img2.jpg"
+                        class="img-fluid d-block carousel_style"
+                        style="max-height: 25rem; width: 100%; object-fit: cover"
+                        alt="discount banner"
+                />
+            </div>
+        </div>
+
         <button
+                class="carousel-control-prev"
                 type="button"
                 data-bs-target="#discount-carousel"
-                data-bs-slide-to="0"
-                class="active"
-        ></button>
+                data-bs-slide="prev"
+        >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
         <button
+                class="carousel-control-next"
                 type="button"
                 data-bs-target="#discount-carousel"
-                data-bs-slide-to="1"
-        ></button>
+                data-bs-slide="next"
+        >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img
-                    src="/images/discount-img1.jpg"
-                    class="img-fluid d-block carousel_style" style="max-height: 25rem; width: 100%; object-fit: cover"
-                    alt="discount banner"
-            />
-        </div>
-        <div class="carousel-item">
-            <img
-                    src="/images/discount-img2.jpg"
-                    class="img-fluid d-block carousel_style" style="max-height: 25rem; width: 100%; object-fit: cover"
-                    alt="discount banner"
-            />
-        </div>
-    </div>
-
-    <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#discount-carousel"
-            data-bs-slide="prev"
-    >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#discount-carousel"
-            data-bs-slide="next"
-    >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
+<% } %>
 <!-- Product -->
 <section id="product-display">
-    <div class="container py-5">
+    <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="text-start fw-bold mt-5 mb-4"><%= category.name; %></h2>
+                <h2 class="text-start fw-bold mb-4"><%= type === "category" ? category.name : type === "all" ? "All Products" : `Search Results for "${search}"` %></h2>
             </div>
 
-            <ul class="nav nav-tabs">
-                <% category.category_type.categories.forEach(cateTypeCategory => { %>
-                    <li class="nav-item">
-                        <a class="nav-link <%= cateTypeCategory.id === category.id ? "active" : "" %>" aria-current="page"
-                           href="/categories/<%= cateTypeCategory.slug %>#product-display"><%= cateTypeCategory.name %>
-                        </a>
-                    </li>
-                <% }) %>
-            </ul>
+            <% if (type === 'category') { %>
+                <ul class="nav nav-tabs">
+                    <% category.category_type.categories.forEach(cateTypeCategory => { %>
+                        <li class="nav-item">
+                            <a class="nav-link <%= cateTypeCategory.id === category.id ? "active" : "" %>"
+                               aria-current="page"
+                               href="/categories/<%= cateTypeCategory.slug %>#product-display"><%= cateTypeCategory.name %>
+                            </a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
         </div>
     </div>
 </section>
@@ -127,55 +138,62 @@
 
 <script>
   // get the current page number from query string
-  let currentPage = 1
+  let currentPage = 1;
+  let pathName = window.location.pathname;
   let totalPages = <%= totalPages %>
+
     $(document).ready(() => {
       function loadPage(page, scrollBack = false) {
-        axios.get(`/categories/<%= category.slug %>/?page=${page}`)
+        axios.get(pathName, {
+          params: {
+            page,
+            q: "<%= type === 'search' ? search : '' %>"
+          }
+        })
           .then(({ data }) => {
-            $("#product-container").html(data.html)
-            setPaginationItemActive()
-            hideLoading()
+            $('#product-container').html(data.html);
+            setPaginationItemActive();
+            hideLoading();
             if (scrollBack) {
-              window.location.href = `#product-display`
+              window.location.href = `#product-display`;
             }
-          })
+          });
       }
 
       function setPaginationItemActive() {
-        $(".page-item").removeClass("active")
-        $(`.page-item a[data-page=${currentPage}]`).parent().addClass("active")
+        $('.page-item').removeClass('active');
+        $(`.page-item a[data-page=${currentPage}]`).parent().addClass('active');
       }
 
       function hideLoading() {
-        $(".product_bg").removeClass("d-none")
-        $("#loading").addClass("d-none")
+        $('.product_bg').removeClass('d-none');
+        $('#loading').addClass('d-none');
       }
 
       function showLoading() {
-        $(".product_bg").addClass("d-none")
-        $("#loading").removeClass("d-none")
+        $('.product_bg').addClass('d-none');
+        $('#loading').removeClass('d-none');
       }
 
-      loadPage(currentPage)
+      loadPage(currentPage);
 
 
       // handle pagination click
-      $(".page-link").click(function(e) {
-        e.preventDefault()
-        let page = $(this).data("page")
-        if (page === "back") {
-          currentPage = Math.max(1, currentPage - 1)
-        } else if (page === "next") {
-          currentPage = Math.min(totalPages, currentPage + 1)
+      $('.page-link').click(function(e) {
+        e.preventDefault();
+        let page = $(this).data('page');
+        if (page === 'back') {
+          currentPage = Math.max(1, currentPage - 1);
+        } else if (page === 'next') {
+          currentPage = Math.min(totalPages, currentPage + 1);
         } else {
-          currentPage = parseInt(page)
+          currentPage = parseInt(page);
         }
-        showLoading()
-        loadPage(currentPage, true)
+        showLoading();
+        loadPage(currentPage, true);
 
-      })
-    })
+      });
+    });
 </script>
 
 <%- include("../layouts/footer") %>

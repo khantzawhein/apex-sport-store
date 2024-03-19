@@ -41,7 +41,36 @@ class ProductController {
     }
   }
 
-  async index(req, res, next) {}
+  index = async (req, res, next) => {
+    try {
+      const search = req.query.q;
+      const page = Math.abs(req.query.page) || 1;
+      const perPage = 15;
+      const query = search
+        ? {
+            where: {
+              name: {
+                contains: search
+              }
+            }
+          }
+        : {};
+      const productCount = await prisma.products.count(query);
+      if (req.xhr) {
+        return res.json(await this.getJsonResponseForProducts(query, productCount, page, perPage));
+      }
+      res.render('storefront/products/index', {
+        totalPages: Math.ceil(productCount / perPage),
+        currentPage: page,
+        type: search ? 'search' : 'all',
+        title: search ? 'Search Results' : 'All Products',
+        search
+      });
+    } catch (error) {
+      console.log(error);
+      next(createError(404, 'Product not found'));
+    }
+  };
 
   indexByCategory = async (req, res, next) => {
     const categorySlug = req.params.slug;
@@ -59,18 +88,13 @@ class ProductController {
           }
         }
       });
-      let query = {};
-      if (category.slug === 'all-products') {
-        query = {};
-      } else {
-        query = {
-          where: {
-            categories: {
-              some: { category_id: category.id }
-            }
+      const query = {
+        where: {
+          categories: {
+            some: { category_id: category.id }
           }
-        };
-      }
+        }
+      };
       const page = Math.abs(req.query.page) || 1;
       const perPage = 15;
       const productCount = await prisma.products.count(query);
@@ -81,6 +105,7 @@ class ProductController {
         category,
         totalPages: Math.ceil(productCount / perPage),
         currentPage: page,
+        type: 'category',
         title: `${category.name}`
       });
     } catch (error) {
@@ -88,6 +113,27 @@ class ProductController {
       return next(createError(404, 'Category not found'));
     }
   };
+
+  async redirectForType(req, res, next) {
+    try {
+      const slug = req.params.slug;
+      const categoryType = await prisma.category_Types.findFirstOrThrow({
+        where: {
+          slug
+        },
+        include: {
+          categories: true
+        }
+      });
+
+      const categorySlug = categoryType.categories[0]?.slug;
+
+      if (categorySlug) return res.redirect(`/categories/${categorySlug}`);
+      return next(createError(404, 'Not Found Category Type'));
+    } catch (error) {
+      return next(createError(404, 'Not Found Category Type'));
+    }
+  }
 
   async getJsonResponseForProducts(query, productCount, page, perPage = 15) {
     const products = await prisma.products.findMany({

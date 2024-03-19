@@ -32,6 +32,7 @@ router.post('/cart/update', CartController.update);
 router.post('/checkout', StorefrontAuth, CheckoutController.store);
 
 router.get('/account', StorefrontAuth, AccountController.index);
+router.get('/types/:slug', ProductController.redirectForType);
 router.get('/thank-you', (req, res) => res.render('storefront/thank-you', { title: 'Order Confirmed' }));
 
 module.exports = router;
