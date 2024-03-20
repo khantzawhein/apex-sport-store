@@ -2,21 +2,16 @@ name: Docker Image CI
 
 on:
   push:
-    branches: ['feature/cicd']
-
-  pull_request:
-    branches: ['feature/cicd']
-
-  workflow_dispatch:
+    branches:
+      - develop
 
 jobs:
-  docker:
+  deploy-dev:
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
       HOST: ${{ secrets.SSH_HOST }}
-      ROOT_PATH: /home/ubuntu/app
+      ROOT_PATH: /home/ubuntu/apex
 
     steps:
       - name: Checkout
@@ -39,29 +34,19 @@ jobs:
         with:
           context: .
           push: true
-          tags: winnkyaw/apex:latest
+          tags: khantzawhein/apex:latest
 
-      - name: Copy Docker Compose via ssh
+      - name: Copy Docker Compose & nginx.conf via ssh
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: 'docker-compose.yml'
+          source: 'docker-compose.yml,nginx.conf'
           target: '${{ env.ROOT_PATH }}'
 
-      - name: Copy nginx.conf via ssh
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          source: 'nginx.conf'
-          target: '${{ env.ROOT_PATH }}/'
-
-      - name: Check Root Directory
+      - name: Docker Compose & Prisma Setup
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -69,34 +54,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            ls -la ${{ env.ROOT_PATH }}
-
-      - name: Docker Compose
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-
             cd ${{ env.ROOT_PATH }}
             echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
-            docker compose down --rmi all
-            docker system prune -f
-            docker compose pull 
-            docker compose up -d
-
-      - name: Prisma Generate
-        if: steps.check_container.outputs.result == 'Container exists'
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd ${{ env.ROOT_PATH }}
-            docker exec -i apex-frontend npx prisma generate
-            docker exec -i apex-frontend npx prisma migrate deploy
-            rm -rf ${{ env.ROOT_PATH }}
+            docker compose down 
+            docker compose pull frontend --quiet
+            docker compose up -d --quiet-pull	--no-color	
+            docker compose exec -i frontend bash -c "npx prisma migrate deploy"

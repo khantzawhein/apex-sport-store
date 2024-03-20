@@ -5,19 +5,22 @@ networks:
 services:
   frontend:
     container_name: apex-frontend
-    image: winnkyaw/apex:latest
+    restart: unless-stopped
+    image: khantzawhein/apex:latest
     volumes:
       - ./uploads:/app/public/uploads
     networks:
       - apex
-    ports:
-      - "3000:3000"
     environment:
-      - DATABASE_URL=mysql://root:password@db:3306/apex
-      - SECRET="mysecret"
+      - DATABASE_URL=${DATABASE_URL}
+      - SECRET=${SECRET}
+      - APP_ENV=production
+      - GIPHY_KEY=${GIPHY_KEY}
+      - TZ=${TZ}
   
   nginx:
     image: nginx:latest
+    restart: unless-stopped
     networks:
       - apex
     ports:
@@ -29,17 +32,12 @@ services:
 
   db:
     image: mysql:8.0
+    restart: unless-stopped
     volumes:
-      - db:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
     networks:
       - apex
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=apex
-      - TZ="+00:00"
-    ports:
-      - "3306:3306"
-
-volumes:
-  db:
-    driver: local
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - TZ=${TZ}

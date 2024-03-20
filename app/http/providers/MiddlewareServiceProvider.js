@@ -2,8 +2,7 @@ const Auth = require('../middlewares/Auth');
 const InjectDefaultViewData = require('../middlewares/InjectDefaultViewData');
 const FacilitateRedirectBack = require('../middlewares/FacilitateRedirectBack');
 const WipeTempUploadFolder = require('../middlewares/WipeTempUploadFolder');
-const InjectStoreFrontData = require('../middlewares/InjectStoreFrontData');
-const StorefrontAuth = require('../middlewares/StorefrontAuth');
+const InjectStoreFrontData = require('../middlewares/InjectStorefrontData');
 
 class MiddlewareServiceProvider {
   constructor(app) {
