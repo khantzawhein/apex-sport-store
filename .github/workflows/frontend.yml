@@ -47,7 +47,7 @@ jobs:
           target: '${{ env.ROOT_PATH }}'
 
       - name: Docker Compose & Prisma Setup
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
