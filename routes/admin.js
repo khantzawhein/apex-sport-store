@@ -38,7 +38,9 @@ router.post('/admins/:id/delete', AdminController.delete);
  * Customer CRUD
  */
 router.get('/customers', CustomerController.index);
-router.get('/customers/edit', CustomerController.edit);
+router.get('/customers/:id/edit', CustomerController.edit);
+router.post('/customers/:id', CustomerController.update);
+router.post('/customers/:id/delete', CustomerController.delete);
 
 /**
  * Category

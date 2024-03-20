@@ -29,7 +29,7 @@
             <% sales.forEach(sale => { %>
                 <tr>
                     <td class="text-center"><%= sale.id %></td>
-                    <td><%= sale.customer.name %></td>
+                    <td><%= sale.customer?.name || "Deleted Customer" %></td>
                     <td><%= sale.total_items %></td>
                     <td>฿<%= sale.total_price %></td>
                     <td class="created-at"><%= sale.created_at.toISOString() %></td>

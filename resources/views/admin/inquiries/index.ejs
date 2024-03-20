@@ -34,7 +34,7 @@
                     <td><%= inquiry.phone; %></td>
                     <td><%= shortenString(inquiry.message, 50); %></td>
                     <td class="created-at"><%= new Date(inquiry.created_at).toISOString(); %></td>
-                    <td>
+                    <td style="width: 15%">
                         <div class="modal fade" tabindex="-1" id="modal-message-<%= inquiry.id %>">
                             <div class="modal-dialog">
                                 <div class="modal-content">

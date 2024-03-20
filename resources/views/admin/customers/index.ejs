@@ -36,8 +36,8 @@
                 <td><%= customer.address %></td>
                 <td><img src="<%= gravatar(customer.email) %>" class="rounded-circle" alt="" width="50" height="50"></td>
                 <td class="created-at"><%= customer.created_at %></td>
-                <td>
-                    <a href="/customer/customers/<%= customer.id %>/edit" class="btn mr-2 btn-outline-secondary">
+                <td style="width: 15%;">
+                    <a href="/admin/customers/<%= customer.id %>/edit" class="btn mr-2 btn-outline-secondary">
                         <i class="fa fa-edit"></i>
                     </a>
                     <button class="btn btn-outline-danger deleteCustomer" data-id="<%= customer.id %>">
