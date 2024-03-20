@@ -9,15 +9,15 @@ const prisma = new PrismaClient();
 class ProductController {
   async index(req, res, next) {
     const categoryId = req.query.category_id;
+    const whereQuery = categoryId ? {
+      categories: {
+        some: {
+          category_id: categoryId ? parseInt(categoryId) : undefined
+        }
+      } } : {};
     const bestSeller = req.query.best_seller || false;
     const products = await prisma.products.findMany({
-      where: {
-        categories: {
-          some: {
-            category_id: categoryId ? parseInt(categoryId) : undefined
-          }
-        }
-      },
+      where: whereQuery,
       include: {
         categories: {
           include: {
@@ -114,7 +114,8 @@ class ProductController {
       fsExtra.ensureDirSync(newDirPath);
 
       const newFilePath = path.join(newDirPath, fileName);
-      fs.renameSync(path.join(global.__basedir, file.path), newFilePath);
+      fs.copyFileSync(path.join(global.__basedir, file.path), newFilePath);
+      fs.unlinkSync(path.join(global.__basedir, file.path));
       return { image_path: path.join(newRelativePath, fileName), image_name: file.originalname };
     });
   }
