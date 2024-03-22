@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= `${title} | Apex Store` ;%></title>
+</head>
+<!--Koulen, Arimo, Karla font  -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
+<link
+        href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Karla:ital,wght@0,200..800;1,200..800&family=Koulen&display=swap"
+        rel="stylesheet"
+/>
+<link rel="stylesheet" href="/css/storefront-all.css" />
+<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+</script>
+
+
+<body>
+<!-- Header -->
+<section id="header">
+    <div>
+        <ul class="nav justify-content-center align-items-center" style="background-color: #19204e">
+            <li class="nav-item">
+                <p class="text-center text-white py-2 m-0 " style="font-size: 0.9rem">Enjoy free shipping for order
+                    above ฿500
+                    <br> 20% OFF Men Sportswear</p>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <%- include('./navbar.ejs') %>
+    </div>
+</section>

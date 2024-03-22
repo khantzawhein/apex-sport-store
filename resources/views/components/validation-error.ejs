@@ -1,0 +1,13 @@
+<% if (session.validation_error) { %>
+    <div class="alert alert-danger alert-dismissible fade show">
+        <strong>Validation Error - Please fix following error(s):</strong>
+        <ul>
+            <% session.validation_error.errors.forEach(function(error) { %>
+                <li><%= error.message; %></li>
+            <% }); %>
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    </div>
+    <% delete session.validation_error; %>
+<% } %>

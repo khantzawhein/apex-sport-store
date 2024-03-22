@@ -1,9 +1,99 @@
 <%- include("../layouts/header.ejs") %>
 
-<main class="">
-  <div class="row">
-    <div class="col">Hello World</div>
-  </div>
+<main class="dashboard">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 col-6 d-flex justify-content-center py-2">
+                            <div class="dashboard-item text-center w-100"
+                                 style="border-right: 1px solid rgba(0,0,0,0.3)">
+                                <h3 class="m-0 text-center"><%= saleCount %></h3>
+                                <p class="m-0 text-muted text-center">Sales</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 d-flex justify-content-center py-2">
+                            <div class="dashboard-item text-center w-100"
+                                 style="border-right: 1px solid rgba(0,0,0,0.3)">
+                                <h3 class="m-0 text-center"><%= productCount %></h3>
+                                <p class="m-0 text-muted text-center">Products</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 d-flex justify-content-center py-2">
+                            <div class="dashboard-item text-center w-100"
+                                 style="border-right: 1px solid rgba(0,0,0,0.3)">
+                                <h3 class="m-0 text-center"><%= categoryCount %></h3>
+                                <p class="m-0 text-muted text-center">Categories</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 d-flex justify-content-center py-2">
+                            <div class="dashboard-item text-center w-100">
+                                <h3 class="m-0 text-center"><%= inquiryCount %></h3>
+                                <p class="m-0 text-muted text-center">Inquiries</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mt-5">
+            <div class="card shadow">
+                <div class="card-body py-4">
+                    <h4 class="card-title text-center"> Quick Links</h4>
+
+                    <div class="row mt-5">
+                        <div class="col-6 mt-4 mt-md-0 col-md-3">
+                            <div class="quick-link-container text-center" style="border-right: 1px solid rgb(0,0,0,0.2)">
+                                <h5>Sales</h5>
+                                <div class="d-flex align-items-center mt-md-4 mt-0 justify-content-center">
+                                    <a href="/admin/sales" class="d-block link-apex  text-decoration-none">
+                                        View Sales
+                                    </a>
+                                    <i class="fa-solid ms-2 fa-arrow-up-right-from-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-4 mt-md-0 col-md-3">
+                            <div class="quick-link-container text-center" style="border-right: 1px solid rgb(0,0,0,0.2)">
+                                <h5>Products</h5>
+                                <div class="d-flex align-items-center mt-md-4 mt-0 justify-content-center">
+                                    <a href="/admin/products/create" class="d-block link-apex  text-decoration-none">
+                                        Create Products
+                                    </a>
+                                    <i class="fa-solid ms-2 fa-arrow-up-right-from-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-4 mt-md-0 col-md-3">
+                            <div class="quick-link-container text-center" style="border-right: 1px solid rgb(0,0,0,0.2)">
+                                <h5>Categories</h5>
+                                <div class="d-flex align-items-center mt-md-4 mt-0 justify-content-center">
+                                    <a href="/admin/category" class="d-block link-apex  text-decoration-none">
+                                        View Category
+                                    </a>
+                                    <i class="fa-solid ms-2 fa-arrow-up-right-from-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-4 mt-md-0 col-md-3">
+                            <div class="quick-link-container text-center">
+                                <h5>Inquiries</h5>
+                                <div class="d-flex align-items-center mt-md-4 mt-0 justify-content-center">
+                                    <a href="/admin/inquiries" class="d-block link-apex  text-decoration-none">
+                                        Check Inquiries
+                                    </a>
+                                    <i class="fa-solid ms-2 fa-arrow-up-right-from-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 " style="height: 200px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <%- include("../layouts/footer.ejs") %>

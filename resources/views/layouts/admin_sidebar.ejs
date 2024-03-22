@@ -1,40 +1,77 @@
 <section id="sidebar">
     <aside class="sidebar d-none d-md-block">
         <div class="sidebar-brand-container">
-            <img src="/images/Apex-logos_black 2.png" alt="Logo">
+            <a href="/admin" class="d-flex justify-content-center"><img src="/images/Apex-logos_black.png"
+                                                                        style="width: 70%; max-width: 200px" alt="Logo"></a>
         </div>
 
-        <ul class="list-group">
-            <li class="list-group-item">
-                <i class="fa-solid fa-table-columns"></i>
-                <span><a href="/admin/dashboard"></a>Dashboard</span>
+        <ul class="list-group nav-group">
+            <li class="list-group-item <%= basePath.startsWith('/admin/dashboard') ? 'active' : '' ;%>">
+                <a class="py-2" href="/admin/dashboard">
+                    <i class="fa-solid fa-table-columns"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="list-group-item <%= basePath.startsWith('/admin/admins') ? 'active' : '' ;%>">
+                <a class="py-2" href="/admin/admins">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Admins</span>
+                </a>
+            </li>
+            <li class="list-group-item <%= basePath.startsWith('/admin/customers') ? 'active' : '' ;%>">
+                <a class="py-2" href="/admin/customers">
+                    <i class="fa-solid fa-clipboard"></i>
+                    <span>Customers</span>
+                </a>
+            </li>
+            <li class="list-group-item <%= basePath.startsWith('/admin/products') ? 'active' : '' ;%>">
+                <a class="py-2" href="/admin/products">
+                    <i class="fa-solid fa-shirt"></i>
+                    <span>Products</span>
+                </a>
+            </li>
+            <li class="list-group-item <%= basePath.startsWith('/admin/category') ? 'active' : '' ;%>">
+                <a class="py-2" href="/admin/category">
+                    <i class="fa-solid fa-list"></i>
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li class="list-group-item <%= basePath.startsWith('/admin/sale') ? 'active' : '' ;%>">
+                <a class="py-2" href="/admin/sales">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>Sales</span>
+                </a>
+            </li>
+            <li class="list-group-item <%= basePath.startsWith('/admin/inquiries') ? 'active' : '' ;%>">
+                <a class="py-2" href="/admin/inquiries">
+                    <i class="fa-solid fa-message"></i>
+                    <span>Inquiries</span>
+                </a>
             </li>
             <li class="list-group-item">
-                <i class="fa-solid fa-user-group"></i>
-                <span><a href="/admin/admins">Admins</a></span>
-            </li>
-            <li class="list-group-item">
-                <i class="fa-solid fa-clipboard"></i>
-                <span><a href="/admin/customers">Customers</a></span>
-            </li>
-            <li class="list-group-item">
-                <i class="fa-solid fa-shirt"></i>
-                <span><a href="/admin/products">Products</a></span>
-            </li>
-            <li class="list-group-item">
-                <i class="fa-solid fa-list"></i>
-                <span><a href="/admin/category">Categories</a></span>
-            </li>
-            <li class="list-group-item">
-                <i class="fa-solid fa-file-invoice-dollar"></i>
-                <span><a href="/admin/sale">Sales</a></span>
-            </li>
-            <li class="list-group-item">
-                <i class="fa-solid fa-message"></i>
-                <span><a href="/admin/inquiries">Inquiries</a></span>
+                <a class="py-2" href="#" onclick="logout()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Log Out</span>
+                </a>
             </li>
         </ul>
     </aside>
 
     <%- include("mobile-nav.ejs") %>
 </section>
+
+<script>
+  function logout() {
+      swal({
+        title: "Are you sure?",
+        text: "You are about to log out from admin panel.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willLogout) => {
+        if (willLogout) {
+          window.location.href = "/admin/logout";
+        }
+      });
+    }
+</script>

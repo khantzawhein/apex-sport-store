@@ -1,0 +1,14 @@
+@import "bootstrap";
+
+@import "theme";
+
+@import "./storefront/home.scss";
+@import "./storefront/products.scss";
+@import "./storefront/product.scss";
+@import "./storefront/contact-us.scss";
+@import "./storefront/cart.scss";
+
+.required:after {
+  content: " *";
+  color: red;
+}

@@ -1,0 +1,70 @@
+<%- include("../../layouts/header.ejs") %>
+<form action="" method="post" id="delete-sale-form"></form>
+<main>
+    <div class="row">
+        <div class="container-md">
+            <!-- Button trigger modal -->
+            <div class="d-flex justify-content-between my-3 align-items-center">
+                <h4>Sales</h4>
+                <a href="/admin/products?best_seller=true" class="btn btn-apex">Top 10 Best Selling Products</a>
+            </div>
+
+            <%- include("../../components/validation-error") %>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped rounded-3 overflow-hidden">
+            <thead class="table-apex-secondary ">
+            <tr>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Total Items</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Ordered At</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% sales.forEach(sale => { %>
+                <tr>
+                    <td class="text-center"><%= sale.id %></td>
+                    <td><%= sale.customer?.name || "Deleted Customer" %></td>
+                    <td><%= sale.total_items %></td>
+                    <td>฿<%= sale.total_price %></td>
+                    <td class="created-at"><%= sale.created_at.toISOString() %></td>
+                    <td>
+                        <a href="/admin/sales/<%= sale.id %>" class="btn btn-outline-primary">
+                            <i class="fa-regular fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            <%})%>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script>
+  $(".deleteSale").click(deleteSale)
+
+  function deleteSale() {
+
+    const saleId = this.getAttribute("data-id")
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this sale!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        $("#delete-sale-form")
+          .attr("action", `/sale/sales/delete/${saleId}`)
+          .submit()
+      }
+    })
+  }
+</script>
+
+<%- include("../../layouts/footer.ejs") %>

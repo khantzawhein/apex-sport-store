@@ -14,62 +14,127 @@ datasource db {
 }
 
 model Admin {
-  id       Int    @id @default(autoincrement())
-  username String
-  password String
-  name     String
+  id         Int      @id @default(autoincrement())
+  username   String
+  email      String?
+  password   String
+  name       String
+  created_at DateTime @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at DateTime @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
 
 model Categories {
-  id       Int        @id @default(autoincrement())
-  name     String
-  slug     String
-  Products Products[]
+  id               Int                @id @default(autoincrement())
+  name             String
+  slug             String
+  category_type_id Int?
+  category_type    Category_Types?    @relation(fields: [category_type_id], references: [id])
+  product_category Product_Category[]
+  created_at       DateTime           @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at       DateTime           @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
+}
+
+model Product_Category {
+  product     Products   @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  product_id  Int
+  category    Categories @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  category_id Int
+
+  @@id(fields: [product_id, category_id])
 }
 
 model Products {
-  id                Int              @id @default(autoincrement())
-  name              String
-  slug              String
-  category          Categories       @relation(fields: [category_id], references: [id])
-  category_id       Int
-  price             Float
-  promotional_price Float
-  sales_count       Int
-  Product_Images    Product_Images[]
-  Sale_Items        Sale_Items[]
+  id                  Int                @id @default(autoincrement())
+  name                String
+  slug                String
+  description         String?            @db.Text
+  price               Float
+  promotional_price   Float?
+  sales_count         Int
+  is_featured_product Boolean            @default(false)
+  is_new_product      Boolean            @default(false)
+  categories          Product_Category[]
+  product_images      Product_Images[]
+  sale_items          Sale_Items[]
+  product_reviews     Product_Reviews[]
+  created_at          DateTime           @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at          DateTime           @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
+}
+
+model Category_Types {
+  id         Int      @id @default(autoincrement())
+  name       String
+  slug       String
+  categories Categories[]
+  created_at DateTime @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at DateTime @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
+}
+
+model Product_Reviews {
+  id          Int       @id @default(autoincrement())
+  product     Products  @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  product_id  Int
+  customer    Customers @relation(fields: [customer_id], references: [id], onDelete: Cascade)
+  customer_id Int
+  rating      Int
+  review      String
+  created_at  DateTime  @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at  DateTime  @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
 
 model Product_Images {
   id         Int      @id @default(autoincrement())
-  product    Products @relation(fields: [product_id], references: [id])
+  product    Products @relation(fields: [product_id], references: [id], onDelete: Cascade)
   product_id Int
   image_path String
   image_name String
+  created_at DateTime @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at DateTime @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
 
 model Sale_Items {
-  id          Int      @id @default(autoincrement())
-  product     Products @relation(fields: [product_id], references: [id])
-  product_id  Int
+  id          Int       @id @default(autoincrement())
+  sale        Sales     @relation(fields: [sale_id], references: [id], onDelete: Cascade)
+  sale_id     Int
+  product     Products? @relation(fields: [product_id], references: [id], onDelete: SetNull)
+  product_id  Int?
   quantity    Int
   unit_price  Float
   total_price Float
+  created_at  DateTime  @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at  DateTime  @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
 
 model Sales {
   id          Int        @id @default(autoincrement())
-  customer_id Int
+  customer_id Int?
   total_items Int
   total_price Float
-  Customers   Customers? @relation(fields: [customersId], references: [id])
-  customersId Int?
+  customer    Customers? @relation(fields: [customer_id], references: [id], onDelete: SetNull)
+  sale_items  Sale_Items[]
+  created_at  DateTime   @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at  DateTime   @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }
 
 model Customers {
-  id       Int     @id @default(autoincrement())
-  name     String
-  email    String
-  password String
-  Sales    Sales[]
+  id              Int               @id @default(autoincrement())
+  name            String
+  email           String
+  password        String
+  phone           String?
+  address         String?
+  sales           Sales[]
+  product_reviews Product_Reviews[]
+  created_at      DateTime          @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at      DateTime          @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
+}
+
+model Inquiries {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String
+  phone      String
+  message    String
+  created_at DateTime @default(dbgenerated("now()")) @db.Timestamp()
+  updated_at DateTime @default(dbgenerated("now()")) @updatedAt @db.Timestamp()
 }

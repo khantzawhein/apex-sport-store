@@ -1,7 +1,9 @@
 class HelloController {
-  constructor() {}
+  constructor() {
+  }
+
   testing(req, res, next) {
-    res.render("admin/testing", { title: "Express" });
+    res.render('admin/testing', { title: 'Express' });
   }
 }
 

@@ -1,0 +1,43 @@
+version: '3.3'
+networks:
+  apex:
+    driver: bridge
+services:
+  frontend:
+    container_name: apex-frontend
+    restart: unless-stopped
+    image: khantzawhein/apex:latest
+    volumes:
+      - ./uploads:/app/public/uploads
+    networks:
+      - apex
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - SECRET=${SECRET}
+      - APP_ENV=production
+      - GIPHY_KEY=${GIPHY_KEY}
+      - TZ=${TZ}
+  
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    networks:
+      - apex
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - apex
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - TZ=${TZ}

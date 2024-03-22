@@ -1,0 +1,93 @@
+.pagination > li > a {
+    background-color: white;
+    color: #19204e;
+  }
+
+  .pagination > li > a:focus,
+  .pagination > li > a:hover,
+  .pagination > li > span:focus,
+  .pagination > li > span:hover {
+    color: #19204e;
+    background-color: #eee;
+    border-color: #ddd;
+  }
+
+  .pagination > .active > a {
+    color: white;
+    background-color: #19204e;
+    border: solid 1px #19204e;
+  }
+
+  .pagination > .active > a:hover {
+    background-color: #19204e;
+    border: solid 1px #19204e;
+  }
+
+  .image-container {
+    position: relative;
+    width: 50%;
+    max-width: 600px; /* Set the maximum width of the image */
+  }
+
+  /* Style for the image */
+  .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Style for the text overlay */
+  .image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+    color: #fff; /* White text color */
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .product_bg {
+    background-color: rgba(214, 214, 214, 0.31);
+  }
+
+  #product-display {
+    .nav-item > a {
+      background-image: linear-gradient(to right, #f1600d, #fcb300 50%, #000 50%);
+      background-size: 200% 100%;
+      background-position: -100%;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+    }
+    .nav-item > a::before {
+      content: "";
+      background: #fcb300;
+      display: block;
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      transition: all 0.3s ease-in-out;
+    }
+    .nav-item > a:hover {
+      background-position: 0;
+    }
+    .nav-item > a:hover:before {
+      width: 100%;
+    }
+  }
+
+  .sportwear_shopnow_bton {
+    background-color: #fcb300 !important;
+    color: whitesmoke !important;
+    font-family: Karla, sans-serif !important;
+  }
+
+  .product_detail_style {
+    font-size: 1rem;
+    font-family: Karla, sans-serif !important;
+  }

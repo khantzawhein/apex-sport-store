@@ -1,3 +1,46 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<%- include('./storefront/layouts/header.ejs') %>
+<% if (error.status === 404) { %>
+    <div class="container-fluid bg-black">
+
+        <div class="position-relative mx-auto mt-3"
+             style="width: 80%; height: 600px;">
+            <img class="w-100 h-100" style="object-fit: cover"
+                 src="<%= gif %>"
+                 alt="404">
+
+            <div class="layer h-100 w-100 position-absolute z-3"
+                 style="top: 0; left: 0; background-color:rgba(0,0,0,0.6);">
+                <div class="position-absolute justify-content-end text-white" style="bottom: 5%; left: 5%">
+                    <h1 class="fw-bold" style="font-size: 3rem">Ooh Crap!</h1>
+                    <p class="fs-3 ms-1" style="letter-spacing: 5px">You're lost...</p>
+                    <a href="/" class="btn btn-outline-apex">Go Back Home... FAST!!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } else { %>
+    <div class="container-fluid bg-black">
+
+        <div class="position-relative mx-auto mt-3"
+             style="width: 80%; height: 600px;">
+            <img class="w-100 h-100" style="object-fit: cover"
+                 src="<%= gif %>"
+                 alt="404">
+
+            <div class="layer h-100 w-100 position-absolute z-3"
+                 style="top: 0; left: 0; background-color:rgba(0,0,0,0.6);">
+                <div class="position-absolute justify-content-end text-white" style="bottom: 5%; left: 5%">
+                    <h1 class="fw-bold" style="font-size: 3rem">Some shit happened!</h1>
+                    <p class="fs-3 ms-1" style="letter-spacing: 5px">Sorry while keep you waiting...</p>
+
+                    <pre><%= message; %></pre>
+                    <pre><%= error.stack; %></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+
+<%- include('./storefront/layouts/footer.ejs') %>
+

@@ -1,7 +1,7 @@
-<nav class="container text-center d-block d-md-none py-4 px-4">
+<nav class="container-md text-center d-block d-md-none py-4 px-4">
     <div class="d-flex justify-content-between align-items-center">
         <div>
-            <img src="/images/image1.png" class="profile-img" alt="Profile Image">
+            <img src="<%= gravatar(session.user.email) ;%>" class="profile-img" alt="Profile Image">
         </div>
         <div>
             <img src="/images/Apex-logos_black 2.png" alt="Logo" style="width: 80%">
@@ -21,41 +21,46 @@
     </div>
 </nav>
 
-<div class="container collapse bg-body-secondary" id="mobile-nav-dropdown">
+<div class="container-md collapse bg-body-secondary" id="mobile-nav-dropdown">
     <ul class="navbar-nav ms-3">
         <li class="nav-item my-1">
-            <a href="#" class="nav-link">
+            <a href="/admin/dashboard" class="nav-link">
                 Dashboard
             </a>
         </li>
         <li class="nav-item my-1">
-            <a href="#" class="nav-link">
+            <a href="/admin/admins" class="nav-link">
                 Admins
             </a>
         </li>
         <li class="nav-item my-1">
-            <a href="#" class="nav-link">
+            <a href="/admin/customers" class="nav-link">
                 Customers
             </a>
         </li>
         <li class="nav-item my-1">
-            <a href="#" class="nav-link">
+            <a href="/admin/products" class="nav-link">
                 Products
             </a>
         </li>
         <li class="nav-item my-1">
-            <a href="#" class="nav-link">
+            <a href="/admin/category" class="nav-link">
                 Categories
             </a>
         </li>
         <li class="nav-item my-1">
-            <a href="#" class="nav-link">
+            <a href="/admin/sales" class="nav-link">
                 Sales
             </a>
         </li>
         <li class="nav-item my-1">
-            <a href="#" class="nav-link">
+            <a href="/admin/inquiries" class="nav-link">
                 Inquiries
+            </a>
+        </li>
+        <li class="nav-item my-1">
+            <a href="#" class="nav-link" onclick="logout()">
+                Log Out
             </a>
         </li>
     </ul>

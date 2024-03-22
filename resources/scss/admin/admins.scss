@@ -10,13 +10,13 @@
 body {
     background-color: #f7f7f7;
 }
-
+#sidebar {
+}
 .sidebar{
     //write width 15vw default and min width to prevent the sidebar from being too small
-    width: 15vw;
-    min-width: 250px;
+    width: 100%;
+    max-width: 300px;
     height: 100vh;
-    float: left;
     margin-right: 1rem;
     margin-left:2rem;
 }
@@ -25,10 +25,6 @@ body {
     width: 100%;
     height: 10vh;
     margin: 1rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
 }
 
 .sidebar-brand-container i, .sidebar-brand-container span{
@@ -45,14 +41,12 @@ body {
 
 .sidebar ul li{
     font-size: 1.5rem;
-    padding: 10px;
-    border: none;
+    padding: 0;
+    height: 4rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.sidebar ul li:hover{
-    background-color: #fff7e5;
-    cursor: pointer;
-}
+
 
 .sidebar ul li i{
     margin-right: 10px;
@@ -63,10 +57,21 @@ body {
     text-decoration: none;
     color: black; 
 }
-.sidebar ul li span:hover{
-    background-color: #fff7e5;
+.sidebar ul li:hover, .sidebar li.active{
+    background-color: #FDDB8E;
+    border-color: #FDDB8E;
+    cursor: pointer;
 }
 
+.nav-group a {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
 
 .greeting {
     height: 10vh;

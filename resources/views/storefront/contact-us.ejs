@@ -1,0 +1,87 @@
+<%- include("./layouts/header") %>
+
+<!-- Breadcrumb -->
+<%- include("./partials/breadcrumb", {breadcrumbs: [
+{"url": "/", "name": "Home"},
+{ "name": "Contact Us"}
+]}) %>
+
+<section id="contact-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="get-in-touch-box position-relative">
+                    <img src="/images/contact-us-bg.png" class="card-img-top img-fluid " alt="contact us">
+                    <div class="get-in-touch-box-inner px-5">
+                        <h5 style="color: whitesmoke; font-size: 2rem;" class="text-start fw-bold">Get in touch</h5>
+                        <div class="contact-details mt-4">
+                            <p style="color: whitesmoke; font-size: 1.5rem;" class="my-0 mb-2">Visit Us </p>
+                            <p style="color: whitesmoke; font-size: 1.2rem;" class="fw-light my-0 mb-2">239/3 Huay Kaew
+                                Road, Suthep, ChiangMai, 50200, Thailand</p>
+                        </div>
+
+                        <div class="contact-details mt-4">
+                            <p style="color: whitesmoke; font-size: 1.5rem;" class="my-0 mb-2">Email Us </p>
+                            <a href="mailto:apex.sportwear@gmail.com" style="color: whitesmoke; font-size: 1.2rem;"
+                               class="fw-light my-0 mb-2">
+                                apex.sportwear@gmail.com
+                            </a>
+                        </div>
+
+                        <div class="contact-details mt-4">
+                            <p style="color: whitesmoke; font-size: 1.5rem;" class="my-0 mb-2">Google Maps </p>
+                            <iframe class="map-frame mt-2"
+                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAd5To8PyNLH6AjmjLvMPBcAHhKM-yCMgI&q=College+of+Arts+Media+and+Technology&center=18.800880,98.949545"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <% if (session.flash?.success) { %>
+                    <div class="d-flex justify-content-center align-items-center h-100 flex-column">
+                        <p class="text-success" style="font-size: 5rem"><i class="fa-regular fa-circle-check"></i></p>
+                        <h1>
+                            Thank you!
+                        </h1>
+                        <p><%= session.flash.success %></p>
+                    </div>
+                <% session.flash = null %>
+                <% } else { %>
+
+                    <form class="row" action="/contact-us" method="POST">
+                        <div class="mb-4 col-md-6">
+                            <label for="first_name" class="form-label required">First Name</label>
+                            <input type="text" class="form-control" id="first_name" required name="first_name">
+                        </div>
+                        <div class="mb-4 col-md-6">
+                            <label for="last_name" class="form-label required">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" required name="last_name"
+                                   aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-4 col-md-12">
+                            <label for="email" class="form-label required">Email</label>
+                            <input type="email" class="form-control" id="email" required name="email"
+                                   aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-4 col-md-12">
+                            <label for="phone" class="form-label required">Phone</label>
+                            <input type="text" class="form-control" id="phone" required name="phone">
+                        </div>
+                        <div class="mb-4 col-md-12">
+                            <label for="message" class="form-label required">Message</label>
+                            <textarea class="form-control" id="message" required name="message" rows="6"></textarea>
+                        </div>
+                        <div class="mb-4 col-md-12 d-grid">
+                            <button type="submit" class="btn btn-navy rounded-0">Send</button>
+                        </div>
+
+                    </form>
+
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<%- include("./layouts/footer") %>
