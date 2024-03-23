@@ -1,5 +1,6 @@
 # Apex Sport Store 
 A Term Project of SE262 Frontend Web Development Course.
+
 A Term Project of SE234 DevOps Course (Group Name: Cinnamoroll)
 
 ## Project Description
